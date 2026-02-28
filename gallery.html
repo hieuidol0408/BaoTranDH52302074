@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hình Ảnh & Video - Tết Sóc Trăng</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: #fff;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .video-container iframe,
+        .video-container object,
+        .video-container embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🌸 Tết Sóc Trăng</a>
+            <div class="menu-toggle">☰</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Trang Chủ</a></li>
+                <li><a href="about.html">Giới Thiệu</a></li>
+                <li><a href="customs.html">Phong Tục</a></li>
+                <li><a href="cuisine.html">Ẩm Thực</a></li>
+                <li><a href="culture.html">Văn Hóa</a></li>
+                <li><a href="gallery.html" class="active">Hình Ảnh</a></li>
+                <li><a href="stories.html">Ký Ức</a></li>
+                <li><a href="contact.html">Liên Hệ</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Album Sắc Xuân Sóc Trăng</h2>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="assets/images/banner_tet_soctrang_2026_1772282021611.png" alt="Phong cảnh 2026">
+                <div class="gallery-overlay">
+                    <p>Chào đón năm mới 2026</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/banner_tet_soctrang_landscape_1772283836885.png" alt="Phong cảnh chiều hoàng hôn">
+                <div class="gallery-overlay">
+                    <p>Hoàng hôn yên bình trên sông</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/making_banh_tet_1772281275027.png" alt="Gói bánh tét">
+                <div class="gallery-overlay">
+                    <p>Bà cháu cùng nhau gói bánh Tét</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/soc_trang_food_1772281290894.png" alt="Mâm cỗ">
+                <div class="gallery-overlay">
+                    <p>Mâm mặn cúng kiếng Ông Bà Tổ Tiên</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/ngo_boat_race_1772281313021.png" alt="Đua ghe">
+                <div class="gallery-overlay">
+                    <p>Hội đua ghe quyết liệt</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/bat_pagoda_1772281330439.png" alt="Chùa Dơi">
+                <div class="gallery-overlay">
+                    <p>Vẻ đẹp tâm linh Chùa Dơi</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/family_gathering_1772281347852.png" alt="Gia đình">
+                <div class="gallery-overlay">
+                    <p>Lì xì ngày mùng 1 Tân niên</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Video Tết Quê</h2>
+        <div class="video-container">
+            <!-- Embedding user requested video -->
+            <iframe src="https://www.youtube.com/embed/IpR8nTweyws?autoplay=0&controls=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p style="text-align: center; color: #666; font-size: 0.9rem;">(Video do bạn cung cấp: Trải nghiệm chợ Tết Quê)</p>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Tết Sóc Trăng. Thực hiện bởi Bảo Trân</p>
+        <div class="social-links">
+            <a href="#">🌐</a>
+            <a href="#">📷</a>
+            <a href="#">✉️</a>
+        </div>
+    </footer>
+
+    <!-- Audio Player -->
+    <audio id="bg-music" loop>
+        <source src="assets/audio/Vạn Sự Như Ý.flac" type="audio/flac">
+    </audio>
+    <button id="music-toggle" aria-label="Play/Pause Music">🔇</button>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

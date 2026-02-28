@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên Hệ - Tết Sóc Trăng</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .contact-layout {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .contact-form {
+            flex: 1;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .contact-map {
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .map-iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border: 0;
+            border-radius: 10px;
+        }
+
+        .author-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .author-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .contact-layout {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🌸 Tết Sóc Trăng</a>
+            <div class="menu-toggle">☰</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Trang Chủ</a></li>
+                <li><a href="about.html">Giới Thiệu</a></li>
+                <li><a href="customs.html">Phong Tục</a></li>
+                <li><a href="cuisine.html">Ẩm Thực</a></li>
+                <li><a href="culture.html">Văn Hóa</a></li>
+                <li><a href="gallery.html">Hình Ảnh</a></li>
+                <li><a href="stories.html">Ký Ức</a></li>
+                <li><a href="contact.html" class="active">Liên Hệ</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Liên Hệ & Đóng Góp</h2>
+
+        <div class="author-info">
+            <h3>Thông tin tác giả</h3>
+            <p>Sinh viên: Bảo Trân</p>
+            <p>Dự án: Bài tập xây dựng Website Văn hóa Địa phương</p>
+            <p>Hạn nộp: 01/03/2026</p>
+        </div>
+
+        <div class="contact-layout">
+            <div class="contact-form">
+                <form action="#" method="POST" onsubmit="alert('Cảm ơn bạn đã đóng góp ý kiến!'); return false;">
+                    <div class="form-group">
+                        <label for="name">Họ và tên</label>
+                        <input type="text" id="name" class="form-control" required placeholder="Nhập tên của bạn">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" required placeholder="Nhập địa chỉ email">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Nội dung đóng góp</label>
+                        <textarea id="message" rows="5" class="form-control" required placeholder="Chia sẻ câu chuyện hoặc ý kiến của bạn..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Gửi Đóng Góp</button>
+                </form>
+            </div>
+
+            <div class="contact-map">
+                <!-- Google Maps Embed for Soc Trang, Vietnam -->
+                <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125745.89510123537!2d105.88248550785194!3d9.60334800293116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a1085732168ebf%3A0x6bba59cd617fdbe3!2sS%C3%B3c%20Tr%C4%83ng%2C%20Soc%20Trang%2C%20Vietnam!5e0!3m2!1sen!2s!4v1703058814731!5m2!1sen!2s" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Tết Sóc Trăng. Thực hiện bởi Bảo Trân</p>
+        <div class="social-links">
+            <a href="#">🌐</a>
+            <a href="#">📷</a>
+            <a href="#">✉️</a>
+        </div>
+    </footer>
+
+    <!-- Audio Player -->
+    <audio id="bg-music" loop>
+        <source src="assets/audio/Vạn Sự Như Ý.flac" type="audio/flac">
+    </audio>
+    <button id="music-toggle" aria-label="Play/Pause Music">🔇</button>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
