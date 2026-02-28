@@ -91,6 +91,29 @@
             white-space: nowrap;
         }
 
+        /* Permanent caption below each image */
+        .gallery-caption {
+            background: #fff;
+            padding: 10px 14px;
+            font-size: 0.88rem;
+            color: #444;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-top: 2px solid var(--accent-color);
+        }
+        .gallery-caption .cat-badge {
+            background: var(--primary-color);
+            color: #fff;
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 10px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
         /* ── PAGINATION ── */
         .pagination {
             display: flex;
@@ -272,45 +295,38 @@
         <div class="gallery-grid" id="galleryGrid">
             <div class="gallery-item visible" data-category="phongcanh" data-caption="Chào đón năm mới 2026">
                 <img src="assets/images/banner_tet_soctrang_2026_1772282021611.png" alt="Phong cảnh 2026">
-                <div class="gallery-overlay">
-                    <p>Chào đón năm mới 2026 <span>Phong Cảnh</span></p>
-                </div>
+                <div class="gallery-overlay"><p>Xem lớn ↗</p></div>
+                <div class="gallery-caption">Chào đón năm mới 2026 <span class="cat-badge">Phong Cảnh</span></div>
             </div>
             <div class="gallery-item visible" data-category="phongcanh" data-caption="Hoàng hôn yên bình trên sông">
                 <img src="assets/images/banner_tet_soctrang_landscape_1772283836885.png" alt="Hoàng hôn">
-                <div class="gallery-overlay">
-                    <p>Hoàng hôn yên bình trên sông <span>Phong Cảnh</span></p>
-                </div>
+                <div class="gallery-overlay"><p>Xem lớn ↗</p></div>
+                <div class="gallery-caption">Hoàng hôn yên bình trên sông <span class="cat-badge">Phong Cảnh</span></div>
             </div>
             <div class="gallery-item visible" data-category="letan" data-caption="Bà cháu cùng gói bánh Tét">
                 <img src="assets/images/making_banh_tet_1772281275027.png" alt="Gói bánh tét">
-                <div class="gallery-overlay">
-                    <p>Bà cháu cùng gói bánh Tét <span>Lễ Tết</span></p>
-                </div>
+                <div class="gallery-overlay"><p>Xem lớn ↗</p></div>
+                <div class="gallery-caption">Bà cháu cùng gói bánh Tét <span class="cat-badge">Lễ Tết</span></div>
             </div>
             <div class="gallery-item visible" data-category="amthuc" data-caption="Mâm cỗ cúng Ông Bà Tổ Tiên">
                 <img src="assets/images/soc_trang_food_1772281290894.png" alt="Mâm cỗ">
-                <div class="gallery-overlay">
-                    <p>Mâm cỗ cúng Ông Bà Tổ Tiên <span>Ẩm Thực</span></p>
-                </div>
+                <div class="gallery-overlay"><p>Xem lớn ↗</p></div>
+                <div class="gallery-caption">Mâm cỗ cúng Ông Bà Tổ Tiên <span class="cat-badge">Ẩm Thực</span></div>
             </div>
             <div class="gallery-item visible" data-category="letan" data-caption="Hội đua ghe Ngo rộn ràng">
                 <img src="assets/images/ngo_boat_race_1772281313021.png" alt="Đua ghe">
-                <div class="gallery-overlay">
-                    <p>Hội đua ghe Ngo rộn ràng <span>Lễ Tết</span></p>
-                </div>
+                <div class="gallery-overlay"><p>Xem lớn ↗</p></div>
+                <div class="gallery-caption">Hội đua ghe Ngo rộn ràng <span class="cat-badge">Lễ Tết</span></div>
             </div>
             <div class="gallery-item visible" data-category="phongcanh" data-caption="Vẻ đẹp tâm linh Chùa Dơi">
                 <img src="assets/images/bat_pagoda_1772281330439.png" alt="Chùa Dơi">
-                <div class="gallery-overlay">
-                    <p>Vẻ đẹp tâm linh Chùa Dơi <span>Phong Cảnh</span></p>
-                </div>
+                <div class="gallery-overlay"><p>Xem lớn ↗</p></div>
+                <div class="gallery-caption">Vẻ đẹp tâm linh Chùa Dơi <span class="cat-badge">Phong Cảnh</span></div>
             </div>
             <div class="gallery-item visible" data-category="letan" data-caption="Lì xì ngày đầu xuân">
                 <img src="assets/images/family_gathering_1772281347852.png" alt="Gia đình">
-                <div class="gallery-overlay">
-                    <p>Lì xì ngày đầu xuân <span>Lễ Tết</span></p>
-                </div>
+                <div class="gallery-overlay"><p>Xem lớn ↗</p></div>
+                <div class="gallery-caption">Lì xì ngày đầu xuân <span class="cat-badge">Lễ Tết</span></div>
             </div>
         </div>
 
