@@ -48,10 +48,8 @@
             overflow: hidden;
             border-radius: 12px;
             cursor: pointer;
-            display: none;
             box-shadow: 0 4px 16px rgba(0,0,0,0.12);
         }
-        .gallery-item.visible { display: block; }
 
         .gallery-item img {
             width: 100%;
@@ -384,22 +382,34 @@
 
         const allItems = Array.from(document.querySelectorAll('.gallery-item'));
 
+        // Data source – store items before removing them
+        const grid = document.getElementById('galleryGrid');
+        const allItemData = allItems.map(item => {
+            grid.removeChild(item);
+            return item;
+        });
+
         function getFiltered() {
-            return allItems.filter(item =>
+            return allItemData.filter(item =>
                 currentFilter === 'all' || item.dataset.category === currentFilter
             );
         }
 
         function renderGallery() {
             const filtered = getFiltered();
-            const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+            const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+            if (currentPage > totalPages) currentPage = totalPages;
             const start = (currentPage - 1) * ITEMS_PER_PAGE;
             const end = start + ITEMS_PER_PAGE;
 
-            allItems.forEach(item => item.classList.remove('visible'));
-            filtered.slice(start, end).forEach(item => item.classList.add('visible'));
+            // Clear and re-insert only the slice of visible items
+            grid.innerHTML = '';
+            filtered.slice(start, end).forEach(item => grid.appendChild(item));
 
             renderPagination(totalPages);
+
+            // Re-attach lightbox listeners for newly inserted items
+            attachLightboxListeners();
         }
 
         function renderPagination(total) {
@@ -448,7 +458,7 @@
         let currentIndex = 0;
 
         function getVisibleItems() {
-            return Array.from(document.querySelectorAll('.gallery-item.visible'));
+            return Array.from(grid.querySelectorAll('.gallery-item'));
         }
 
         function openLightbox(index) {
@@ -461,13 +471,11 @@
             document.body.style.overflow = 'hidden';
         }
 
-        document.querySelectorAll('.gallery-item').forEach((item, i) => {
-            item.addEventListener('click', () => {
-                const visible = getVisibleItems();
-                const visIdx = visible.indexOf(item);
-                if (visIdx >= 0) openLightbox(visIdx);
+        function attachLightboxListeners() {
+            getVisibleItems().forEach((item, i) => {
+                item.onclick = () => openLightbox(i);
             });
-        });
+        }
 
         document.getElementById('lightbox-close').onclick = () => {
             lightbox.classList.remove('open');
