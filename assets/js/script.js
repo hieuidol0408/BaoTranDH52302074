@@ -65,6 +65,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const musicToggle = document.getElementById('music-toggle');
     
     if (bgMusic && musicToggle) {
+        // Restore playback position
+        const savedTime = sessionStorage.getItem('musicTime');
+        if (savedTime !== null) {
+            bgMusic.currentTime = parseFloat(savedTime);
+        }
+
+        // Save position continuously before the user leaves the page
+        window.addEventListener('beforeunload', () => {
+            sessionStorage.setItem('musicTime', bgMusic.currentTime);
+        });
+
         // Function to attempt playing music
         const tryPlayMusic = () => {
             const playPromise = bgMusic.play();
