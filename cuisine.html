@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ẩm Thực Ngày Tết - Sóc Trăng</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .food-item {
+            display: flex;
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .food-img {
+            width: 40%;
+            object-fit: cover;
+        }
+
+        .food-info {
+            padding: 20px;
+            width: 60%;
+        }
+
+        .food-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .food-info span {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .food-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🌸 Tết Sóc Trăng</a>
+            <div class="menu-toggle">☰</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Trang Chủ</a></li>
+                <li><a href="about.html">Giới Thiệu</a></li>
+                <li><a href="customs.html">Phong Tục</a></li>
+                <li><a href="cuisine.html" class="active">Ẩm Thực</a></li>
+                <li><a href="culture.html">Văn Hóa</a></li>
+                <li><a href="gallery.html">Hình Ảnh</a></li>
+                <li><a href="stories.html">Ký Ức</a></li>
+                <li><a href="contact.html">Liên Hệ</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Hương Vị Tết Quê</h2>
+        <p style="text-align: center; max-width: 600px; margin: 0 auto;">
+            Mâm cỗ Tết ở Sóc Trăng là bức tranh ẩm thực đa sắc màu, phản ánh sản vật trù phú của miệt vườn sông nước, cùng với sự kết tinh của nhiều nền văn hóa.
+        </p>
+
+        <div class="food-grid">
+            <div class="food-item">
+                <img src="assets/images/making_banh_tet_1772281275027.png" alt="Bánh Tét" class="food-img">
+                <div class="food-info">
+                    <span>Món Truyền Thống</span>
+                    <h3>Bánh Tét</h3>
+                    <p>Khác với bánh chưng miền Bắc, bánh Tét miền Nam gói theo đòn dài. Người Sóc Trăng thích nhân chuối, nhân mỡ, hoặc Bánh Tét Trà Cuôn trứ danh.</p>
+                </div>
+            </div>
+
+            <div class="food-item">
+                <img src="assets/images/soc_trang_food_1772281290894.png" alt="Thịt Kho Hột Vịt" class="food-img">
+                <div class="food-info">
+                    <span>Món Mặn</span>
+                    <h3>Thịt Kho Tàu (Thịt Kho Hột Vịt)</h3>
+                    <p>Thịt ba rọi kho chung với hột vịt luộc bóc vỏ, nước dừa xiêm tạo nên màu nâu cánh gián ánh vàng. Ý nghĩa của hột vịt tròn vuông là mong muốn "vuông tròn", sung túc.</p>
+                </div>
+            </div>
+
+            <div class="food-item">
+                <img src="assets/images/soc_trang_food_1772281290894.png" style="clip-path: circle(40%);" alt="Canh Khổ Qua" class="food-img">
+                <div class="food-info">
+                    <span>Canh</span>
+                    <h3>Canh Khổ Qua Dồn Thịt</h3>
+                    <p>Món ăn không thể thiếu với ý nghĩa: Cái "Khổ" sẽ "Qua" đi, mong năm mới tới mọi việc được suôn sẻ, ngọt ngào.</p>
+                </div>
+            </div>
+
+            <div class="food-item">
+                <img src="assets/images/soc_trang_food_1772281290894.png" alt="Bánh Pía" class="food-img">
+                <div class="food-info">
+                    <span>Đặc Sản Sóc Trăng</span>
+                    <h3>Bánh Pía & Lạp Xưởng</h3>
+                    <p>Dù không chỉ Tết mới có, nhưng Bánh Pía Vũng Thơm, Lạp Xưởng Mai Quế Lộ luôn được mua nhiều nhất để đem biếu tặng và dọn lên bàn khách ngày mùng 1.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Tết Sóc Trăng. Thực hiện bởi Bảo Trân</p>
+        <div class="social-links">
+            <a href="#">🌐</a>
+            <a href="#">📷</a>
+            <a href="#">✉️</a>
+        </div>
+    </footer>
+
+    <!-- Audio Player -->
+    <audio id="bg-music" loop>
+        <source src="assets/audio/Vạn Sự Như Ý.flac" type="audio/flac">
+    </audio>
+    <button id="music-toggle" aria-label="Play/Pause Music">🔇</button>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

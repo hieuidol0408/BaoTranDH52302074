@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới Thiệu Quê Hương - Sóc Trăng</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .about-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            font-size: 1.1rem;
+        }
+
+        .about-text h3 {
+            color: var(--secondary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .special-box {
+            background-color: #fff;
+            padding: 20px;
+            border-left: 5px solid var(--accent-color);
+            margin-top: 30px;
+            border-radius: 0 5px 5px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🌸 Tết Sóc Trăng</a>
+            <div class="menu-toggle">☰</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Trang Chủ</a></li>
+                <li><a href="about.html" class="active">Giới Thiệu</a></li>
+                <li><a href="customs.html">Phong Tục</a></li>
+                <li><a href="cuisine.html">Ẩm Thực</a></li>
+                <li><a href="culture.html">Văn Hóa</a></li>
+                <li><a href="gallery.html">Hình Ảnh</a></li>
+                <li><a href="stories.html">Ký Ức</a></li>
+                <li><a href="contact.html">Liên Hệ</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="about-header">
+        <h1>Về Vùng Đất Sóc Trăng</h1>
+        <p>Nơi giao thoa của ba dòng văn hóa Kinh - Hoa - Khmer</p>
+    </div>
+
+    <section class="container">
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Vị trí địa lý</h3>
+                <p>Sóc Trăng là một tỉnh ven biển nằm trong vùng đồng bằng sông Cửu Long, Việt Nam. Vùng đất này nằm ở hạ lưu Nam sông Hậu, là nơi gắn liền với nhịp sống nông nghiệp lúa nước và những nét sinh hoạt miệt vườn mộc mạc.</p>
+
+                <h3>Đặc điểm con người</h3>
+                <p>Người dân Sóc Trăng nổi tiếng hiền hòa, chân chất và vô cùng hiếu khách. Sóc Trăng là nơi hội tụ và giao thoa mật thiết của ba dân tộc anh em: Kinh, Hoa và Khmer. Chính sự đa dạng này đã tạo nên một bản sắc văn hóa phong phú, đặc sắc, thể hiện rõ nhất qua các dịp Lễ Tết.</p>
+
+                <div class="special-box">
+                    <h3>Tết Sóc Trăng có gì khác biệt?</h3>
+                    <p>So với các tỉnh miền Bắc chuộng hoa đào và bánh chưng, Tết Sóc Trăng, cũng như miền Tây, ngập tràn sắc vàng của hoa mai và mùi thơm của bánh tét. Điều đặc biệt là trong mâm cỗ Tết có sự hiện diện của bánh Pía - đặc sản của người Hoa, và tiếng nhạc cụ ngũ âm rộn rã tại các ngôi chùa Khmer, tạo nên một không gian Tết đa sắc màu không nơi nào có được.</p>
+                </div>
+            </div>
+            
+            <div class="about-image">
+                <img src="assets/images/bat_pagoda_1772281330439.png" alt="Chùa Dơi Sóc Trăng ngày xuân">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Tết Sóc Trăng. Thực hiện bởi Bảo Trân</p>
+        <div class="social-links">
+            <a href="#">🌐</a>
+            <a href="#">📷</a>
+            <a href="#">✉️</a>
+        </div>
+    </footer>
+
+    <!-- Audio Player -->
+    <audio id="bg-music" loop>
+        <source src="assets/audio/Vạn Sự Như Ý.flac" type="audio/flac">
+    </audio>
+    <button id="music-toggle" aria-label="Play/Pause Music">🔇</button>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

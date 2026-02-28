@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Văn Hóa & Sinh Hoạt - Tết Sóc Trăng</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .culture-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
+            gap: 40px;
+        }
+
+        .culture-section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .culture-content {
+            flex: 1;
+        }
+
+        .culture-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .culture-image {
+            flex: 1;
+        }
+
+        .culture-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        @media screen and (max-width: 768px) {
+            .culture-section, .culture-section:nth-child(even) {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🌸 Tết Sóc Trăng</a>
+            <div class="menu-toggle">☰</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Trang Chủ</a></li>
+                <li><a href="about.html">Giới Thiệu</a></li>
+                <li><a href="customs.html">Phong Tục</a></li>
+                <li><a href="cuisine.html">Ẩm Thực</a></li>
+                <li><a href="culture.html" class="active">Văn Hóa</a></li>
+                <li><a href="gallery.html">Hình Ảnh</a></li>
+                <li><a href="stories.html">Ký Ức</a></li>
+                <li><a href="contact.html">Liên Hệ</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Sinh Hoạt & Lễ Hội</h2>
+
+        <div class="culture-section">
+            <div class="culture-content">
+                <h3>Vui Chơi Đầu Xuân</h3>
+                <p>Trước Tết, các chợ nổi và đường hoa bờ kênh xang rộn rã kẻ bán người mua. Trẻ con háo hức xem múa Lân Sư Rồng trước các đình làng người Hoa. Nông thôn thì có các trò chơi dân gian như kéo co, bịt mắt bắt dê, đá gà đầu làng.</p>
+            </div>
+            <div class="culture-image">
+                <img src="assets/images/family_gathering_1772281347852.png" alt="Gia đình sum vầy">
+            </div>
+        </div>
+
+        <div class="culture-section">
+            <div class="culture-content">
+                <h3>Đua Ghe Ngo Đầu Năm</h3>
+                <p>Lễ hội Đua Ghe Ngo (Oóc Om Bóc) vốn của người Khmer diễn ra vào rằm tháng 10 âm lịch, nhưng tinh thần thể thao rèn luyện và văn hóa chèo xuồng trên sông Mekong luôn thấm nhuần vào các hội thi đầu năm mới trên khắp các vàm sông.</p>
+            </div>
+            <div class="culture-image">
+                <img src="assets/images/ngo_boat_race_1772281313021.png" alt="Đua Ghe Ngo">
+            </div>
+        </div>
+
+        <div class="culture-section">
+            <div class="culture-content">
+                <h3>Viếng Chùa Cầu An</h3>
+                <p>Sóc Trăng có nhiều danh lam thắng cảnh tâm linh nổi tiếng. Đầu xuân, du khách từ khắp nơi đổ về Chùa Dơi (Mahatup), Chùa Chén Kiểu (Sro Loun), Chùa Đất Sét để chiêm bái, mong một năm nhân hòa, mùa màng bội thu.</p>
+            </div>
+            <div class="culture-image">
+                <img src="assets/images/bat_pagoda_1772281330439.png" alt="Chùa Dơi">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Tết Sóc Trăng. Thực hiện bởi Bảo Trân</p>
+        <div class="social-links">
+            <a href="#">🌐</a>
+            <a href="#">📷</a>
+            <a href="#">✉️</a>
+        </div>
+    </footer>
+
+    <!-- Audio Player -->
+    <audio id="bg-music" loop>
+        <source src="assets/audio/Vạn Sự Như Ý.flac" type="audio/flac">
+    </audio>
+    <button id="music-toggle" aria-label="Play/Pause Music">🔇</button>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ký Ức & Câu Chuyện - Tết Sóc Trăng</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .story-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .story-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .story-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .story-card p {
+            font-style: italic;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .story-author {
+            display: block;
+            margin-top: 15px;
+            text-align: right;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🌸 Tết Sóc Trăng</a>
+            <div class="menu-toggle">☰</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Trang Chủ</a></li>
+                <li><a href="about.html">Giới Thiệu</a></li>
+                <li><a href="customs.html">Phong Tục</a></li>
+                <li><a href="cuisine.html">Ẩm Thực</a></li>
+                <li><a href="culture.html">Văn Hóa</a></li>
+                <li><a href="gallery.html">Hình Ảnh</a></li>
+                <li><a href="stories.html" class="active">Ký Ức</a></li>
+                <li><a href="contact.html">Liên Hệ</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container story-container">
+        <h2 class="section-title">Chuyện Kể Ngày Xuân</h2>
+        <p style="text-align: center; margin-bottom: 40px;">
+            Những mẩu chuyện nhỏ, những ký ức không quên về cái Tết đầm ấm nơi miền quê Sóc Trăng.
+        </p>
+
+        <div class="story-card">
+            <h3>Kỷ niệm Tết tuổi thơ</h3>
+            <p>"Hồi nhỏ, thích nhất là những ngày giáp Tết được lẽo đẽo theo ngoại ra chợ ngã Năm mua lá chuối, lạt dang về gói bánh. Cái không khí nhộn nhịp, tiếng ghe xuồng tấp nập mũi lái cọ vào nhau, rồi cái mùi nhang thơm lừng khắp xóm làm đứa trẻ nào cũng nôn nao rạo rực không ngủ được chờ áo mới."</p>
+            <span class="story-author">- Thanh Tùng (25 tuổi)</span>
+        </div>
+
+        <div class="story-card" style="border-left-color: var(--secondary-color);">
+            <h3>Chuyến xe muộn ngày 29</h3>
+            <p>"Đi làm xa xứ trên Sài Gòn, năm nào cũng phải chen chúc mua vé xe đò đêm 29 để kịp về. Vừa đặt chân xuống bến xe Trà Men lúc tờ mờ sáng, hít một hơi cái không khí se lạnh của quê nhà, nghe tiếng má lúi húi nấu nước dưới bếp là thấy bao nhiêu nhọc nhằn một năm qua bay biến hết. Tết là được về nhà."</p>
+            <span class="story-author">- Chị Lan (Công nhân Mộc Bài)</span>
+        </div>
+
+        <div class="story-card" style="border-left-color: var(--primary-color);">
+            <h3>Lấy vợ người Hoa, ăn Tết 2 quê</h3>
+            <p>"Mình là người Kinh, vợ người Hoa ở Vĩnh Châu. Từ ngày có vợ, cái Tết ở nhà phong phú hẳn ra. Mâm cúng Giao thừa không chỉ có chè trôi nước mà còn có cả bánh Tổ mạ vàng. Sáng mùng 1, bên ngoại múa Lân ầm ĩ trước cửa xua tà khí, vui rần rần cả một góc phố."</p>
+            <span class="story-author">- Chú Tư Khang (50 tuổi)</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Tết Sóc Trăng. Thực hiện bởi Bảo Trân</p>
+        <div class="social-links">
+            <a href="#">🌐</a>
+            <a href="#">📷</a>
+            <a href="#">✉️</a>
+        </div>
+    </footer>
+
+    <!-- Audio Player -->
+    <audio id="bg-music" loop>
+        <source src="assets/audio/Vạn Sự Như Ý.flac" type="audio/flac">
+    </audio>
+    <button id="music-toggle" aria-label="Play/Pause Music">🔇</button>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
