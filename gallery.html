@@ -4,72 +4,224 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hình Ảnh & Video - Tết Sóc Trăng</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-            margin-bottom: 50px;
+        /* ── FILTER TABS ── */
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 36px;
+        }
+        .filter-btn {
+            padding: 8px 22px;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.92rem;
+            font-weight: 600;
+            font-family: inherit;
+            transition: all 0.25s ease;
+        }
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: #fff;
         }
 
+        /* ── MASONRY GALLERY ── */
+        .gallery-grid {
+            columns: 3;
+            column-gap: 16px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 900px) { .gallery-grid { columns: 2; } }
+        @media (max-width: 500px) { .gallery-grid { columns: 1; } }
+
         .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 16px;
             position: relative;
             overflow: hidden;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
+            display: none; /* hidden by default, shown by JS */
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
         }
+        .gallery-item.visible { display: block; }
 
         .gallery-item img {
             width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
             display: block;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
+        .gallery-item:hover img { transform: scale(1.07); }
 
         .gallery-overlay {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            padding: 20px;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
+            display: flex;
+            align-items: flex-end;
+            padding: 18px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+        .gallery-overlay p {
             color: #fff;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
+            font-size: 0.92rem;
+            font-weight: 600;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+            margin: 0;
+        }
+        .gallery-overlay span {
+            background: var(--accent-color);
+            color: #333;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 9px;
+            border-radius: 12px;
+            margin-left: 8px;
+            white-space: nowrap;
         }
 
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
+        /* ── PAGINATION ── */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 32px 0 50px;
+        }
+        .page-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: inherit;
+        }
+        .page-btn:hover, .page-btn.active {
+            background: var(--primary-color);
+            color: #fff;
+        }
+        .page-arrow {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: inherit;
+        }
+        .page-arrow:hover {
+            background: var(--primary-color);
+            color: #fff;
         }
 
+        /* ── LIGHTBOX ── */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 9998;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+            animation: fadeIn 0.25s ease;
+        }
+        #lightbox.open { display: flex; }
+        #lightbox img {
+            max-width: 90vw;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 60px rgba(0,0,0,0.6);
+        }
+        #lightbox-caption {
+            color: #fff;
+            margin-top: 14px;
+            font-size: 1rem;
+            text-align: center;
+            opacity: 0.85;
+        }
+        #lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 28px;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+            transition: transform 0.2s ease;
+        }
+        #lightbox-close:hover { transform: rotate(90deg) scale(1.2); }
+        #lightbox-prev, #lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+            transition: transform 0.2s ease;
+        }
+        #lightbox-prev { left: 20px; }
+        #lightbox-next { right: 20px; }
+        #lightbox-prev:hover { transform: translateY(-50%) translateX(-5px); }
+        #lightbox-next:hover { transform: translateY(-50%) translateX(5px); }
+
+        /* ── VIDEO SECTION ── */
+        .video-section-title {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .video-desc {
+            text-align: center;
+            color: var(--text-light, #666);
+            margin-bottom: 24px;
+            font-size: 0.97rem;
+        }
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            max-width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.18);
             background: #000;
-            border-radius: 10px;
-            margin-bottom: 30px;
+            margin-bottom: 12px;
         }
-
-        .video-container iframe,
-        .video-container object,
-        .video-container embed {
+        .video-container iframe {
             position: absolute;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
             height: 100%;
             border: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
         }
     </style>
 </head>
@@ -94,73 +246,105 @@
     </header>
 
     <!-- Hero Banner -->
-    <section class="hero" style="background-image: url('assets/images/bat_pagoda_1772281330439.png'); height: 40vh; min-height: 250px;">
+    <section class="hero" style="background-image: url('assets/images/bat_pagoda_1772281330439.png'); height: 42vh; min-height: 260px;">
         <div class="hero-content">
-            <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Thư Viện Ảnh Lễ Hội</h1>
-            <p style="font-size: 1.2rem;">Ngắm nhìn nhịp sống mùa xuân qua từng khung hình</p>
+            <h1>Thư Viện Ảnh Sắc Xuân</h1>
+            <p>Ngắm nhìn nhịp sống mùa xuân qua từng khoảnh khắc</p>
         </div>
     </section>
 
+    <!-- Gallery Section -->
     <div class="container">
         <h2 class="section-title">Album Sắc Xuân Sóc Trăng</h2>
+        <p style="text-align:center;color:#666;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto;">
+            Bộ sưu tập hình ảnh về Tết truyền thống, phong cảnh và con người Sóc Trăng. Nhấn vào ảnh để xem toàn màn hình.
+        </p>
 
-        <div class="gallery-grid">
-            <div class="gallery-item">
+        <!-- Filter Tabs -->
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">Tất Cả</button>
+            <button class="filter-btn" data-filter="phongcanh">Phong Cảnh</button>
+            <button class="filter-btn" data-filter="amthuc">Ẩm Thực</button>
+            <button class="filter-btn" data-filter="letan">Lễ Tết</button>
+        </div>
+
+        <!-- Masonry Grid -->
+        <div class="gallery-grid" id="galleryGrid">
+            <div class="gallery-item visible" data-category="phongcanh" data-caption="Chào đón năm mới 2026">
                 <img src="assets/images/banner_tet_soctrang_2026_1772282021611.png" alt="Phong cảnh 2026">
                 <div class="gallery-overlay">
-                    <p>Chào đón năm mới 2026</p>
+                    <p>Chào đón năm mới 2026 <span>Phong Cảnh</span></p>
                 </div>
             </div>
-            <div class="gallery-item">
-                <img src="assets/images/banner_tet_soctrang_landscape_1772283836885.png" alt="Phong cảnh chiều hoàng hôn">
+            <div class="gallery-item visible" data-category="phongcanh" data-caption="Hoàng hôn yên bình trên sông">
+                <img src="assets/images/banner_tet_soctrang_landscape_1772283836885.png" alt="Hoàng hôn">
                 <div class="gallery-overlay">
-                    <p>Hoàng hôn yên bình trên sông</p>
+                    <p>Hoàng hôn yên bình trên sông <span>Phong Cảnh</span></p>
                 </div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item visible" data-category="letan" data-caption="Bà cháu cùng gói bánh Tét">
                 <img src="assets/images/making_banh_tet_1772281275027.png" alt="Gói bánh tét">
                 <div class="gallery-overlay">
-                    <p>Bà cháu cùng nhau gói bánh Tét</p>
+                    <p>Bà cháu cùng gói bánh Tét <span>Lễ Tết</span></p>
                 </div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item visible" data-category="amthuc" data-caption="Mâm cỗ cúng Ông Bà Tổ Tiên">
                 <img src="assets/images/soc_trang_food_1772281290894.png" alt="Mâm cỗ">
                 <div class="gallery-overlay">
-                    <p>Mâm mặn cúng kiếng Ông Bà Tổ Tiên</p>
+                    <p>Mâm cỗ cúng Ông Bà Tổ Tiên <span>Ẩm Thực</span></p>
                 </div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item visible" data-category="letan" data-caption="Hội đua ghe Ngo rộn ràng">
                 <img src="assets/images/ngo_boat_race_1772281313021.png" alt="Đua ghe">
                 <div class="gallery-overlay">
-                    <p>Hội đua ghe quyết liệt</p>
+                    <p>Hội đua ghe Ngo rộn ràng <span>Lễ Tết</span></p>
                 </div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item visible" data-category="phongcanh" data-caption="Vẻ đẹp tâm linh Chùa Dơi">
                 <img src="assets/images/bat_pagoda_1772281330439.png" alt="Chùa Dơi">
                 <div class="gallery-overlay">
-                    <p>Vẻ đẹp tâm linh Chùa Dơi</p>
+                    <p>Vẻ đẹp tâm linh Chùa Dơi <span>Phong Cảnh</span></p>
                 </div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item visible" data-category="letan" data-caption="Lì xì ngày đầu xuân">
                 <img src="assets/images/family_gathering_1772281347852.png" alt="Gia đình">
                 <div class="gallery-overlay">
-                    <p>Lì xì ngày mùng 1 Tân niên</p>
+                    <p>Lì xì ngày đầu xuân <span>Lễ Tết</span></p>
                 </div>
             </div>
         </div>
 
-        <h2 class="section-title">Video Tết Quê</h2>
-        <div class="video-container">
-            <!-- Embedding user requested video -->
-            <iframe src="https://www.youtube.com/embed/IpR8nTweyws?autoplay=0&controls=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <!-- Pagination -->
+        <div class="pagination" id="pagination">
+            <button class="page-arrow" id="prevPage">← Trước</button>
+            <button class="page-btn active" data-page="1">1</button>
+            <button class="page-arrow" id="nextPage">Sau →</button>
         </div>
-        <p style="text-align: center; color: #666; font-size: 0.9rem;">(Video do bạn cung cấp: Trải nghiệm chợ Tết Quê)</p>
 
+        <!-- Video Section -->
+        <h2 class="section-title video-section-title">Video Tết Quê</h2>
+        <p class="video-desc">Hòa mình vào không khí chợ Tết và khoảnh khắc giao thừa đặc sắc qua video bên dưới.</p>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/IpR8nTweyws?controls=1&rel=0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
+        </div>
+        <p style="text-align:center;font-size:0.85rem;color:#999;margin-top:8px;">🎬 Video: Trải nghiệm chợ Tết quê</p>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <button id="lightbox-close">✕</button>
+        <button id="lightbox-prev">‹</button>
+        <img id="lightbox-img" src="" alt="">
+        <p id="lightbox-caption"></p>
+        <button id="lightbox-next">›</button>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Tết Sóc Trăng. Thực hiện bởi Bảo Trân</p>
+        <p>© 2026 Tết Sóc Trăng. Thực hiện bởi Bảo Trân</p>
         <div class="social-links">
             <a href="#">🌐</a>
             <a href="#">📷</a>
@@ -175,5 +359,135 @@
     <button id="music-toggle" aria-label="Play/Pause Music">🔇</button>
 
     <script src="assets/js/script.js"></script>
+    <script>
+        // ── FILTER ──
+        const ITEMS_PER_PAGE = 6;
+        let currentPage = 1;
+        let currentFilter = 'all';
+
+        const allItems = Array.from(document.querySelectorAll('.gallery-item'));
+
+        function getFiltered() {
+            return allItems.filter(item =>
+                currentFilter === 'all' || item.dataset.category === currentFilter
+            );
+        }
+
+        function renderGallery() {
+            const filtered = getFiltered();
+            const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+            const start = (currentPage - 1) * ITEMS_PER_PAGE;
+            const end = start + ITEMS_PER_PAGE;
+
+            allItems.forEach(item => item.classList.remove('visible'));
+            filtered.slice(start, end).forEach(item => item.classList.add('visible'));
+
+            renderPagination(totalPages);
+        }
+
+        function renderPagination(total) {
+            const pg = document.getElementById('pagination');
+            pg.innerHTML = '';
+
+            const prev = document.createElement('button');
+            prev.className = 'page-arrow';
+            prev.textContent = '← Trước';
+            prev.disabled = currentPage === 1;
+            prev.style.opacity = currentPage === 1 ? '0.4' : '1';
+            prev.onclick = () => { currentPage--; renderGallery(); };
+            pg.appendChild(prev);
+
+            for (let i = 1; i <= total; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'page-btn' + (i === currentPage ? ' active' : '');
+                btn.textContent = i;
+                btn.onclick = () => { currentPage = i; renderGallery(); };
+                pg.appendChild(btn);
+            }
+
+            const next = document.createElement('button');
+            next.className = 'page-arrow';
+            next.textContent = 'Sau →';
+            next.disabled = currentPage === total;
+            next.style.opacity = currentPage === total ? '0.4' : '1';
+            next.onclick = () => { currentPage++; renderGallery(); };
+            pg.appendChild(next);
+        }
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                currentPage = 1;
+                renderGallery();
+            });
+        });
+
+        // ── LIGHTBOX ──
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        const lbCap = document.getElementById('lightbox-caption');
+        let currentIndex = 0;
+
+        function getVisibleItems() {
+            return Array.from(document.querySelectorAll('.gallery-item.visible'));
+        }
+
+        function openLightbox(index) {
+            const items = getVisibleItems();
+            currentIndex = index;
+            const item = items[index];
+            lbImg.src = item.querySelector('img').src;
+            lbCap.textContent = item.dataset.caption || '';
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        document.querySelectorAll('.gallery-item').forEach((item, i) => {
+            item.addEventListener('click', () => {
+                const visible = getVisibleItems();
+                const visIdx = visible.indexOf(item);
+                if (visIdx >= 0) openLightbox(visIdx);
+            });
+        });
+
+        document.getElementById('lightbox-close').onclick = () => {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        };
+
+        document.getElementById('lightbox-prev').onclick = () => {
+            const items = getVisibleItems();
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            lbImg.src = items[currentIndex].querySelector('img').src;
+            lbCap.textContent = items[currentIndex].dataset.caption || '';
+        };
+
+        document.getElementById('lightbox-next').onclick = () => {
+            const items = getVisibleItems();
+            currentIndex = (currentIndex + 1) % items.length;
+            lbImg.src = items[currentIndex].querySelector('img').src;
+            lbCap.textContent = items[currentIndex].dataset.caption || '';
+        };
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('open')) return;
+            if (e.key === 'ArrowRight') document.getElementById('lightbox-next').click();
+            if (e.key === 'ArrowLeft') document.getElementById('lightbox-prev').click();
+            if (e.key === 'Escape') document.getElementById('lightbox-close').click();
+        });
+
+        // Init
+        renderGallery();
+    </script>
 </body>
 </html>
