@@ -4,51 +4,186 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Văn Hóa & Sinh Hoạt - Tết Sóc Trăng</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .culture-section {
+
+        /* ── FESTIVAL SPOTLIGHT CARD ── */
+        .festival-card {
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.13);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: 50px;
+            background: #fff;
+            border: 1px solid #f0e8e8;
+        }
+        @media (max-width: 700px) { .festival-card { grid-template-columns: 1fr; } }
+        .festival-card.reverse { direction: rtl; }
+        .festival-card.reverse > * { direction: ltr; }
+
+        .festival-card img {
+            width: 100%; height: 100%;
+            min-height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+        .festival-info {
+            padding: 36px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .festival-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            width: fit-content;
+            color: #fff;
+        }
+        .badge-red    { background: linear-gradient(135deg, #c62828, #ef5350); }
+        .badge-green  { background: linear-gradient(135deg, #2e7d32, #43a047); }
+        .badge-gold   { background: linear-gradient(135deg, #f57f17, #fbc02d); color: #333 !important; }
+        .badge-blue   { background: linear-gradient(135deg, #1565c0, #1976d2); }
+
+        .festival-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            color: #222;
+            margin-bottom: 14px;
+            line-height: 1.3;
+        }
+        .festival-info p {
+            color: #666;
+            line-height: 1.85;
+            font-size: 0.97rem;
+            margin-bottom: 10px;
+        }
+        .festival-tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+        }
+        .ftag {
+            background: #f5f5f5;
+            color: #555;
+            font-size: 0.78rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        /* ── ACTIVITY MINI CARDS ── */
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 56px;
+        }
+        @media (max-width: 800px) { .activity-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 420px) { .activity-grid { grid-template-columns: 1fr; } }
+
+        .activity-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px 18px;
+            text-align: center;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+            border-bottom: 4px solid transparent;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .activity-card:hover { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(0,0,0,0.13); }
+        .activity-card:nth-child(1) { border-color: #c62828; }
+        .activity-card:nth-child(2) { border-color: #f9a825; }
+        .activity-card:nth-child(3) { border-color: #2e7d32; }
+        .activity-card:nth-child(4) { border-color: #1565c0; }
+
+        .activity-icon { font-size: 2.4rem; margin-bottom: 12px; }
+        .activity-card h4 { font-weight: 700; color: #222; margin-bottom: 8px; font-size: 0.97rem; }
+        .activity-card p { color: #777; font-size: 0.84rem; line-height: 1.6; }
+
+        /* ── TEMPLES SECTION ── */
+        .temples-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #3d0000 100%);
+            border-radius: 22px;
+            padding: 44px;
+            margin-bottom: 56px;
+            color: #fff;
+        }
+        .temples-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.85rem;
+            color: #fbc02d;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .temples-section > p {
+            text-align: center;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .temple-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+        @media (max-width: 640px) { .temple-grid { grid-template-columns: 1fr; } }
+        .temple-item {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 14px;
+            padding: 22px 18px;
+        }
+        .temple-item .temple-icon { font-size: 2rem; margin-bottom: 10px; }
+        .temple-item h4 { color: #fbc02d; font-size: 0.97rem; margin-bottom: 8px; }
+        .temple-item p { color: rgba(255,255,255,0.78); font-size: 0.85rem; line-height: 1.65; }
+
+        /* ── ARTS & MUSIC STRIP ── */
+        .arts-strip {
+            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 56px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        @media (max-width: 640px) { .arts-strip { grid-template-columns: 1fr; } }
+        .arts-text h2 {
+            font-family: 'Playfair Display', serif;
+            color: #a5d6a7;
+            font-size: 1.7rem;
+            margin-bottom: 14px;
+        }
+        .arts-text p { color: rgba(255,255,255,0.88); line-height: 1.8; font-size: 0.97rem; }
+        .arts-items { display: flex; flex-direction: column; gap: 12px; }
+        .arts-item {
+            background: rgba(255,255,255,0.12);
+            border-radius: 12px;
+            padding: 14px 18px;
             display: flex;
             align-items: center;
-            margin-bottom: 60px;
-            gap: 40px;
+            gap: 12px;
+            color: #fff;
+            font-size: 0.93rem;
         }
+        .arts-item span { font-size: 1.6rem; }
 
-        .culture-section:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .culture-content {
-            flex: 1;
-        }
-
-        .culture-content h3 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-
-        .culture-image {
-            flex: 1;
-        }
-
-        .culture-image img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        @media screen and (max-width: 768px) {
-            .culture-section, .culture-section:nth-child(even) {
-                flex-direction: column;
-            }
-        }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">🌸 Tết Sóc Trăng</a>
@@ -66,52 +201,168 @@
         </div>
     </header>
 
-    <!-- Hero Banner -->
-    <section class="hero" style="background-image: url('assets/images/ngo_boat_race_1772281313021.png'); height: 40vh; min-height: 250px;">
+    <!-- Hero -->
+    <section class="hero" style="background-image: url('assets/images/ngo_boat_race_1772281313021.png'); height: 48vh; min-height: 300px;">
         <div class="hero-content">
-            <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Sắc Màu Văn Hóa</h1>
-            <p style="font-size: 1.2rem;">Rộn ràng lễ hội và các sinh hoạt cộng đồng đầu xuân</p>
+            <h1>Sắc Màu Văn Hóa</h1>
+            <p>Rộn ràng lễ hội và sinh hoạt cộng đồng đầu xuân Sóc Trăng</p>
         </div>
     </section>
 
     <div class="container">
+
         <h2 class="section-title">Sinh Hoạt & Lễ Hội</h2>
+        <p style="text-align:center;color:#666;max-width:640px;margin:0 auto 48px;">
+            Văn hóa Sóc Trăng là sự hòa quyện tuyệt vời của ba dòng văn hóa — mỗi lễ hội đều mang đặc trưng riêng
+            nhưng cùng chung tinh thần sum vầy, yêu thương và cầu mong năm mới tốt lành.
+        </p>
 
-        <div class="culture-section">
-            <div class="culture-content">
-                <h3>Vui Chơi Đầu Xuân</h3>
-                <p>Trước Tết, các chợ nổi và đường hoa bờ kênh xang rộn rã kẻ bán người mua. Trẻ con háo hức xem múa Lân Sư Rồng trước các đình làng người Hoa. Nông thôn thì có các trò chơi dân gian như kéo co, bịt mắt bắt dê, đá gà đầu làng.</p>
-            </div>
-            <div class="culture-image">
-                <img src="assets/images/family_gathering_1772281347852.png" alt="Gia đình sum vầy">
+        <!-- Festival 1: Đua Ghe Ngo -->
+        <div class="festival-card">
+            <img src="assets/images/ngo_boat_race_1772281313021.png" alt="Đua Ghe Ngo">
+            <div class="festival-info">
+                <div class="festival-badge badge-blue">🚣 Lễ Hội Đặc Trưng</div>
+                <h2>Đua Ghe Ngo Khmer</h2>
+                <p>
+                    Lễ hội Óoc Om Bóc – Đua Ghe Ngo của người Khmer là một trong những lễ hội lớn nhất và đặc sắc nhất
+                    không chỉ của Sóc Trăng mà của cả vùng đồng bằng sông Cửu Long.
+                </p>
+                <p>
+                    Mỗi chiếc ghe Ngo dài từ 22 đến 25 mét, với 40–60 tay chèo mình trần, cùng nhau đồng thanh
+                    hò reo vượt sóng — tạo ra cảnh tượng hùng tráng khiến hàng ngàn khán giả nín thở cổ vũ.
+                </p>
+                <div class="festival-tag-row">
+                    <span class="ftag">🗓️ Tháng 10 âm lịch</span>
+                    <span class="ftag">📍 Sông Maspero</span>
+                    <span class="ftag">🏆 Di sản văn hóa</span>
+                </div>
             </div>
         </div>
 
-        <div class="culture-section">
-            <div class="culture-content">
-                <h3>Đua Ghe Ngo Đầu Năm</h3>
-                <p>Lễ hội Đua Ghe Ngo (Oóc Om Bóc) vốn của người Khmer diễn ra vào rằm tháng 10 âm lịch, nhưng tinh thần thể thao rèn luyện và văn hóa chèo xuồng trên sông Mekong luôn thấm nhuần vào các hội thi đầu năm mới trên khắp các vàm sông.</p>
-            </div>
-            <div class="culture-image">
-                <img src="assets/images/ngo_boat_race_1772281313021.png" alt="Đua Ghe Ngo">
+        <!-- Festival 2: Múa Lân -->
+        <div class="festival-card reverse">
+            <img src="assets/images/family_gathering_1772281347852.png" alt="Múa Lân Sư Rồng">
+            <div class="festival-info">
+                <div class="festival-badge badge-gold">🦁 Lễ Hội Người Hoa</div>
+                <h2>Múa Lân Sư Rồng</h2>
+                <p>
+                    Khi tiếng trống chiêng rộn ràng vang lên, đoàn Lân Sư Rồng rực rỡ sắc đỏ vàng
+                    bắt đầu biểu diễn trước các cửa hàng và gia đình người Hoa trên khắp phố thị Sóc Trăng.
+                </p>
+                <p>
+                    Điệu múa Lân không chỉ mang lại may mắn mà còn là biểu trưng cho tinh thần đoàn kết,
+                    sức mạnh và sự phát triển thịnh vượng của cộng đồng người Hoa tại đây.
+                </p>
+                <div class="festival-tag-row">
+                    <span class="ftag">🗓️ Mùng 1 – Rằm tháng Giêng</span>
+                    <span class="ftag">🏘️ Khắp phố thị</span>
+                </div>
             </div>
         </div>
 
-        <div class="culture-section">
-            <div class="culture-content">
-                <h3>Viếng Chùa Cầu An</h3>
-                <p>Sóc Trăng có nhiều danh lam thắng cảnh tâm linh nổi tiếng. Đầu xuân, du khách từ khắp nơi đổ về Chùa Dơi (Mahatup), Chùa Chén Kiểu (Sro Loun), Chùa Đất Sét để chiêm bái, mong một năm nhân hòa, mùa màng bội thu.</p>
+        <!-- Festival 3: Chùa viếng chùa -->
+        <div class="festival-card">
+            <img src="assets/images/bat_pagoda_1772281330439.png" alt="Viếng Chùa">
+            <div class="festival-info">
+                <div class="festival-badge badge-green">🙏 Tâm Linh & Lễ Phật</div>
+                <h2>Viếng Chùa Đầu Năm</h2>
+                <p>
+                    Sóc Trăng là vùng đất của những ngôi chùa nổi tiếng thơm danh cả nước. Đầu xuân,
+                    dòng người từ khắp nơi kéo về thắp hương, cầu bình an, sức khỏe và may mắn.
+                </p>
+                <p>
+                    Điều đặc biệt là người Kinh, Hoa và Khmer đều cùng nhau đi lễ tại các chùa
+                    của ba tôn giáo — thể hiện sự hòa hợp tâm linh hiếm có.
+                </p>
+                <div class="festival-tag-row">
+                    <span class="ftag">🕌 Chùa Dơi (Mahatup)</span>
+                    <span class="ftag">🏛️ Chùa Đất Sét</span>
+                    <span class="ftag">⛩️ Chùa Chén Kiểu</span>
+                </div>
             </div>
-            <div class="culture-image">
-                <img src="assets/images/bat_pagoda_1772281330439.png" alt="Chùa Dơi">
+        </div>
+
+        <!-- Activities 4-card row -->
+        <h2 class="section-title" style="margin-top: 10px;">Trò Chơi & Hoạt Động</h2>
+        <div class="activity-grid">
+            <div class="activity-card">
+                <div class="activity-icon">🎭</div>
+                <h4>Hát Cải Lương</h4>
+                <p>Những đêm văn nghệ cải lương da diết vẳng lên từ sân khấu đình làng — tiếng hát réo rắt làm ấm lòng người thưởng thức.</p>
+            </div>
+            <div class="activity-card">
+                <div class="activity-icon">🎯</div>
+                <h4>Trò Chơi Dân Gian</h4>
+                <p>Kéo co, bịt mắt bắt dê, đá gà, ném còn — những trò chơi rộn rã tiếng cười đầu làng, gắn kết bà con lối xóm.</p>
+            </div>
+            <div class="activity-card">
+                <div class="activity-icon">🌸</div>
+                <h4>Chợ Hoa Xuân</h4>
+                <p>Chợ hoa bờ kênh nhộn nhịp kẻ bán người mua — màu sắc rực rỡ của mai vàng, cúc vạn thọ, lay ơn tô điểm ngõ hẻm.</p>
+            </div>
+            <div class="activity-card">
+                <div class="activity-icon">🎆</div>
+                <h4>Pháo Hoa Giao Thừa</h4>
+                <p>Màn pháo hoa rực rỡ trên bầu trời thành phố đúng Giao Thừa — khoảnh khắc thiêng liêng cả gia đình cùng ngắm và ước nguyện.</p>
+            </div>
+        </div>
+
+        <!-- Temples dark section -->
+        <div class="temples-section">
+            <h2>🛕 Danh Thắng Tâm Linh Sóc Trăng</h2>
+            <p>Ba ngôi chùa nổi tiếng nhất — điểm đến không thể bỏ qua trong hành trình du xuân</p>
+            <div class="temple-grid">
+                <div class="temple-item">
+                    <div class="temple-icon">🦇</div>
+                    <h4>Chùa Dơi (Mahatup)</h4>
+                    <p>Ngôi chùa Khmer cổ kính hơn 400 năm tuổi, nổi tiếng với đàn dơi khổng lồ trú ngụ trên cành cây. Kiến trúc Khmer độc đáo với tháp nhọn vàng rực.</p>
+                </div>
+                <div class="temple-item">
+                    <div class="temple-icon">🏺</div>
+                    <h4>Chùa Đất Sét</h4>
+                    <p>Ngôi chùa bằng đất sét thuần túy với hàng nghìn bức tượng Phật và đèn nến khổng lồ làm thủ công — kỳ công của một con người trọn đời cống hiến.</p>
+                </div>
+                <div class="temple-item">
+                    <div class="temple-icon">🏮</div>
+                    <h4>Chùa Chén Kiểu (Sro Loun)</h4>
+                    <p>Ngôi chùa được ốp lát bằng hàng triệu mảnh chén sứ, gốm sứ và đĩa nhiều màu sắc từ cộng đồng Khmer đóng góp — lấp lánh như một bảo tàng nghệ thuật.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Arts & Music -->
+        <div class="arts-strip">
+            <div class="arts-text">
+                <h2>🎵 Âm Nhạc & Nghệ Thuật</h2>
+                <p>
+                    Bên cạnh các lễ hội hoành tráng, văn hóa Sóc Trăng còn được thể hiện qua những
+                    loại hình nghệ thuật truyền thống độc đáo được gìn giữ qua bao thế hệ.
+                </p>
+            </div>
+            <div class="arts-items">
+                <div class="arts-item">
+                    <span>🎼</span>
+                    <div><strong>Nhạc Ngũ Âm Khmer</strong> — Bộ nhạc cụ 5 nhóm âm thanh đặc trưng từ chùa Khmer, vang lên mỗi dịp lễ hội.</div>
+                </div>
+                <div class="arts-item">
+                    <span>🎭</span>
+                    <div><strong>Dù Kê (Opera Khmer)</strong> — Loại hình sân khấu múa hát cổ truyền của người Khmer Nam Bộ với trang phục hoa lệ.</div>
+                </div>
+                <div class="arts-item">
+                    <span>🎺</span>
+                    <div><strong>Cải Lương Nam Bộ</strong> — Giọng ca da diết, điệu đờn ca tài tử vọng mãi trong những đêm hội làng đầu xuân.</div>
+                </div>
+                <div class="arts-item">
+                    <span>🥁</span>
+                    <div><strong>Trống Chiêng Hội Lân</strong> — Âm thanh hùng tráng của đội múa Lân người Hoa, xua đuổi tà khí đầu năm mới.</div>
+                </div>
             </div>
         </div>
 
     </div>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Tết Sóc Trăng. Thực hiện bởi Bảo Trân</p>
+        <p>© 2026 Tết Sóc Trăng. Thực hiện bởi Bảo Trân</p>
         <div class="social-links">
             <a href="#">🌐</a>
             <a href="#">📷</a>
@@ -119,7 +370,6 @@
         </div>
     </footer>
 
-    <!-- Audio Player -->
     <audio id="bg-music" loop>
         <source src="assets/audio/Vạn Sự Như Ý.flac" type="audio/flac">
     </audio>
