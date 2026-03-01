@@ -4,48 +4,237 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ký Ức & Câu Chuyện - Tết Sóc Trăng</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .story-container {
-            max-width: 800px;
+
+        /* ── MOOD BANNER ── */
+        .mood-strip {
+            background: linear-gradient(135deg, #8b0000 0%, #c62828 40%, #f57f17 100%);
+            padding: 28px 24px;
+            text-align: center;
+            color: #fff;
+        }
+        .mood-strip p {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-style: italic;
+            color: rgba(255,255,255,0.92);
+            max-width: 700px;
             margin: 0 auto;
+            line-height: 1.7;
+        }
+        .mood-strip cite {
+            display: block;
+            margin-top: 8px;
+            font-style: normal;
+            font-size: 0.82rem;
+            color: #fbc02d;
+            font-family: 'Be Vietnam Pro', sans-serif;
         }
 
-        .story-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--accent-color);
+        /* ── FEATURED STORY ── */
+        .featured-story {
+            background: #fff;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            margin-bottom: 56px;
+            border: 1px solid #f0e0e0;
         }
+        @media (max-width: 700px) { .featured-story { grid-template-columns: 1fr; } }
 
-        .story-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            font-size: 1.5rem;
+        .featured-story img {
+            width: 100%; height: 100%;
+            min-height: 300px;
+            object-fit: cover;
+            display: block;
         }
-
-        .story-card p {
+        .featured-body {
+            padding: 40px 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+        .featured-body::before {
+            content: '"';
+            position: absolute;
+            top: 10px; right: 24px;
+            font-size: 8rem;
+            color: rgba(198,40,40,0.07);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        .story-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #c62828, #ef5350);
+            color: #fff;
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            width: fit-content;
+        }
+        .featured-body h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.65rem;
+            color: #222;
+            margin-bottom: 16px;
+            line-height: 1.35;
+        }
+        .featured-body blockquote {
             font-style: italic;
             color: #555;
-            line-height: 1.8;
+            line-height: 1.85;
+            font-size: 0.97rem;
+            border-left: 4px solid #c62828;
+            padding-left: 16px;
+            margin: 0 0 18px;
+        }
+        .story-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .story-avatar {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #c62828, #f57f17);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .story-author-info strong {
+            display: block;
+            color: #222;
+            font-size: 0.9rem;
+        }
+        .story-author-info span {
+            color: #aaa;
+            font-size: 0.78rem;
         }
 
-        .story-author {
-            display: block;
-            margin-top: 15px;
-            text-align: right;
-            font-weight: bold;
-            color: var(--secondary-color);
+        /* ── STORY CARDS GRID ── */
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 56px;
         }
+        @media (max-width: 640px) { .stories-grid { grid-template-columns: 1fr; } }
+
+        .story-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 28px 26px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+            position: relative;
+            border-top: 5px solid var(--accent-color, #c62828);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.13);
+        }
+        .story-card.green  { border-top-color: #2e7d32; }
+        .story-card.gold   { border-top-color: #f57f17; }
+        .story-card.blue   { border-top-color: #1565c0; }
+
+        .story-card .quote-mark {
+            font-size: 4rem;
+            color: rgba(198,40,40,0.12);
+            font-family: Georgia, serif;
+            line-height: 0.8;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .story-card.green .quote-mark  { color: rgba(46,125,50,0.12); }
+        .story-card.gold  .quote-mark  { color: rgba(245,127,23,0.15); }
+        .story-card.blue  .quote-mark  { color: rgba(21,101,192,0.12); }
+
+        .story-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: #222;
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+        }
+        .story-card p {
+            color: #666;
+            font-style: italic;
+            line-height: 1.8;
+            font-size: 0.92rem;
+            margin-bottom: 18px;
+        }
+        .story-card .card-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-top: 14px;
+            border-top: 1px solid #f0f0f0;
+        }
+        .mini-avatar {
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .ma-red   { background: #ffeaea; }
+        .ma-green { background: #e8f5e9; }
+        .ma-gold  { background: #fff8e1; }
+        .ma-blue  { background: #e3f2fd; }
+
+        .card-author strong { display: block; font-size: 0.88rem; color: #333; }
+        .card-author span   { font-size: 0.77rem; color: #aaa; }
+
+        /* ── EMOTIONS SECTION ── */
+        .emotions-section {
+            background: linear-gradient(135deg, #c62828, #8b0000);
+            border-radius: 22px;
+            padding: 44px;
+            margin-bottom: 56px;
+            text-align: center;
+            color: #fff;
+        }
+        .emotions-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #fbc02d;
+            margin-bottom: 10px;
+        }
+        .emotions-section > p {
+            color: rgba(255,255,255,0.82);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+        .emotion-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+        }
+        .emotion-pill {
+            background: rgba(255,255,255,0.14);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 14px;
+            padding: 16px 22px;
+            text-align: center;
+            min-width: 130px;
+        }
+        .emotion-pill .ep-icon { font-size: 2rem; margin-bottom: 6px; }
+        .emotion-pill strong   { display: block; font-size: 0.95rem; margin-bottom: 2px; }
+        .emotion-pill span     { font-size: 0.78rem; opacity: 0.78; }
+
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">🌸 Tết Sóc Trăng</a>
@@ -63,42 +252,154 @@
         </div>
     </header>
 
-    <!-- Hero Banner -->
-    <section class="hero" style="background-image: url('assets/images/banner_tet_soctrang_landscape_1772283836885.png'); height: 40vh; min-height: 250px;">
+    <!-- Hero -->
+    <section class="hero" style="background-image: url('assets/images/banner_tet_soctrang_landscape_1772283836885.png'); height: 46vh; min-height: 290px;">
         <div class="hero-content">
-            <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Góc Ký Ức</h1>
-            <p style="font-size: 1.2rem;">Những câu chuyện đong đầy nỗi nhớ quê nhà</p>
+            <h1>Góc Ký Ức</h1>
+            <p>Những câu chuyện đong đầy nỗi nhớ về quê hương Sóc Trăng</p>
         </div>
     </section>
 
-    <div class="container story-container">
-        <h2 class="section-title">Chuyện Kể Ngày Xuân</h2>
-        <p style="text-align: center; margin-bottom: 40px;">
-            Những mẩu chuyện nhỏ, những ký ức không quên về cái Tết đầm ấm nơi miền quê Sóc Trăng.
-        </p>
-
-        <div class="story-card">
-            <h3>Kỷ niệm Tết tuổi thơ</h3>
-            <p>"Hồi nhỏ, thích nhất là những ngày giáp Tết được lẽo đẽo theo ngoại ra chợ ngã Năm mua lá chuối, lạt dang về gói bánh. Cái không khí nhộn nhịp, tiếng ghe xuồng tấp nập mũi lái cọ vào nhau, rồi cái mùi nhang thơm lừng khắp xóm làm đứa trẻ nào cũng nôn nao rạo rực không ngủ được chờ áo mới."</p>
-            <span class="story-author">- Thanh Tùng (25 tuổi)</span>
-        </div>
-
-        <div class="story-card" style="border-left-color: var(--secondary-color);">
-            <h3>Chuyến xe muộn ngày 29</h3>
-            <p>"Đi làm xa xứ trên Sài Gòn, năm nào cũng phải chen chúc mua vé xe đò đêm 29 để kịp về. Vừa đặt chân xuống bến xe Trà Men lúc tờ mờ sáng, hít một hơi cái không khí se lạnh của quê nhà, nghe tiếng má lúi húi nấu nước dưới bếp là thấy bao nhiêu nhọc nhằn một năm qua bay biến hết. Tết là được về nhà."</p>
-            <span class="story-author">- Chị Lan (Công nhân Mộc Bài)</span>
-        </div>
-
-        <div class="story-card" style="border-left-color: var(--primary-color);">
-            <h3>Lấy vợ người Hoa, ăn Tết 2 quê</h3>
-            <p>"Mình là người Kinh, vợ người Hoa ở Vĩnh Châu. Từ ngày có vợ, cái Tết ở nhà phong phú hẳn ra. Mâm cúng Giao thừa không chỉ có chè trôi nước mà còn có cả bánh Tổ mạ vàng. Sáng mùng 1, bên ngoại múa Lân ầm ĩ trước cửa xua tà khí, vui rần rần cả một góc phố."</p>
-            <span class="story-author">- Chú Tư Khang (50 tuổi)</span>
-        </div>
+    <!-- Mood Strip Quote -->
+    <div class="mood-strip">
+        <p>"Tết không đơn giản chỉ là một ngày. Tết là cả một đời người thu gọn lại trong mùi khói nhang,
+        tiếng pháo đêm Giao Thừa và bàn tay ngoại run run trao bao lì xì đỏ."</p>
+        <cite>— Cảm nhận của người con xa quê</cite>
     </div>
 
-    <!-- Footer -->
+    <div class="container">
+
+        <h2 class="section-title">Chuyện Kể Ngày Xuân</h2>
+        <p style="text-align:center;color:#666;max-width:600px;margin:0 auto 44px;">
+            Những mẩu chuyện nhỏ, những ký ức không phai về cái Tết đầm ấm nơi miền quê Sóc Trăng —
+            mỗi câu chuyện là một cuốn phim ký ức sống động không thể quên.
+        </p>
+
+        <!-- FEATURED STORY -->
+        <div class="featured-story">
+            <img src="assets/images/making_banh_tet_1772281275027.png" alt="Gói bánh tét">
+            <div class="featured-body">
+                <div class="story-badge">⭐ Câu Chuyện Nổi Bật</div>
+                <h2>Kỷ Niệm Tết Tuổi Thơ</h2>
+                <blockquote>
+                    "Hồi nhỏ, thích nhất là những ngày giáp Tết được lẽo đẽo theo ngoại ra chợ ngã Năm
+                    mua lá chuối, lạt dang về gói bánh. Cái không khí nhộn nhịp, tiếng ghe xuồng tấp nập
+                    mũi lái cọ vào nhau, rồi cái mùi nhang thơm lừng khắp xóm... làm đứa trẻ nào cũng
+                    nôn nao rạo rực không ngủ được chờ áo mới."
+                </blockquote>
+                <div class="story-meta">
+                    <div class="story-avatar">🧒</div>
+                    <div class="story-author-info">
+                        <strong>Thanh Tùng</strong>
+                        <span>25 tuổi · Người con Sóc Trăng</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STORY CARDS GRID -->
+        <div class="stories-grid">
+
+            <div class="story-card green">
+                <span class="quote-mark">"</span>
+                <h3>Chuyến Xe Muộn Ngày 29</h3>
+                <p>"Đi làm xa trên Sài Gòn, năm nào cũng phải chen vé xe đêm 29 để kịp về. Vừa đặt chân xuống
+                bến xe Trà Men lúc tờ mờ sáng, hít một hơi không khí se lạnh của quê nhà, nghe tiếng má lúi
+                húi nấu nước dưới bếp là thấy bao nhọc nhằn một năm qua bay biến hết. Tết là được về nhà."</p>
+                <div class="card-author">
+                    <div class="mini-avatar ma-green">🚌</div>
+                    <div>
+                        <strong>Chị Lan</strong>
+                        <span>Công nhân Bình Dương · Quê Trà Vinh</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="story-card gold">
+                <span class="quote-mark" style="color:rgba(245,127,23,0.15);">"</span>
+                <h3>Lấy Vợ Người Hoa, Ăn Tết Hai Quê</h3>
+                <p>"Mình là người Kinh, vợ người Hoa ở Vĩnh Châu. Từ ngày có vợ, cái Tết ở nhà phong phú
+                hẳn ra. Mâm cúng Giao thừa không chỉ có chè trôi nước mà còn có bánh Tổ mạ vàng. Sáng mùng 1,
+                bên ngoại múa Lân ầm ĩ trước cửa xua tà khí, vui rần rần cả một góc phố."</p>
+                <div class="card-author">
+                    <div class="mini-avatar ma-gold">👨‍👩‍👧</div>
+                    <div>
+                        <strong>Chú Tư Khang</strong>
+                        <span>50 tuổi · Sóc Trăng</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="story-card blue">
+                <span class="quote-mark" style="color:rgba(21,101,192,0.12);">"</span>
+                <h3>Đêm Canh Nồi Bánh Cuối Cùng</h3>
+                <p>"Năm đó ngoại bệnh nặng, cả nhà biết có thể là cái Tết cuối cùng có ngoại. Ngoại vẫn cố
+                gượng ngồi chỉ cho tụi tôi cách gói bánh tét nhân chuối. Tiếng lửa bếp, mùi lá chuối thơm,
+                tiếng ngoại kể chuyện xưa — giờ đây mỗi lần gói bánh tôi lại rưng rưng nhớ đêm đó."</p>
+                <div class="card-author">
+                    <div class="mini-avatar ma-blue">👵</div>
+                    <div>
+                        <strong>Bé Ngọc</strong>
+                        <span>19 tuổi · Sinh viên TP. Hồ Chí Minh</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <span class="quote-mark">"</span>
+                <h3>Tiếng Nhạc Ngũ Âm Đêm Giao Thừa</h3>
+                <p>"Nhà tôi gần chùa Khmer. Mỗi đêm Giao thừa khi đồng hồ điểm 12 giờ, tiếng nhạc ngũ âm vang lên
+                từ chùa — trong trẻo mà thiêng liêng lạ. Tôi hay ra sân ngồi nghe, nhìn lên trời đầy sao
+                và cầu nguyện cho cả gia đình bình an. Đó là khoảnh khắc tôi cảm nhận rõ nhất mình đang
+                sống ở một vùng đất đặc biệt."</p>
+                <div class="card-author">
+                    <div class="mini-avatar ma-red">🎵</div>
+                    <div>
+                        <strong>Anh Minh Khoa</strong>
+                        <span>32 tuổi · Sóc Trăng</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Emotions Section -->
+        <div class="emotions-section">
+            <h2>💛 Tết Là Cảm Xúc</h2>
+            <p>Hơn cả một ngày lễ — Tết là kho tàng cảm xúc nguyên vẹn nhất của tuổi thơ và ký ức</p>
+            <div class="emotion-pills">
+                <div class="emotion-pill">
+                    <div class="ep-icon">🏡</div>
+                    <strong>Được Về Nhà</strong>
+                    <span>Sau cả năm xa xứ</span>
+                </div>
+                <div class="emotion-pill">
+                    <div class="ep-icon">👨‍👩‍👧‍👦</div>
+                    <strong>Sum Họp Gia Đình</strong>
+                    <span>Đông đủ mặt đàn con</span>
+                </div>
+                <div class="emotion-pill">
+                    <div class="ep-icon">🧧</div>
+                    <strong>Lì Xì Đầu Năm</strong>
+                    <span>Niềm vui tuổi thơ</span>
+                </div>
+                <div class="emotion-pill">
+                    <div class="ep-icon">🌺</div>
+                    <strong>Mùi Nhang Thơm</strong>
+                    <span>Khói hương ký ức</span>
+                </div>
+                <div class="emotion-pill">
+                    <div class="ep-icon">🌙</div>
+                    <strong>Đêm Giao Thừa</strong>
+                    <span>Thiêng liêng nhất đời</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <footer>
-        <p>&copy; 2026 Tết Sóc Trăng. Thực hiện bởi Bảo Trân</p>
+        <p>© 2026 Tết Sóc Trăng. Thực hiện bởi Bảo Trân</p>
         <div class="social-links">
             <a href="#">🌐</a>
             <a href="#">📷</a>
@@ -106,7 +407,6 @@
         </div>
     </footer>
 
-    <!-- Audio Player -->
     <audio id="bg-music" loop>
         <source src="assets/audio/Vạn Sự Như Ý.flac" type="audio/flac">
     </audio>
