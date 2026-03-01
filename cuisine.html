@@ -4,60 +4,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ẩm Thực Ngày Tết - Sóc Trăng</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .food-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
 
-        .food-item {
-            display: flex;
-            background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .food-img {
-            width: 40%;
-            object-fit: cover;
-        }
-
-        .food-info {
-            padding: 20px;
-            width: 60%;
-        }
-
-        .food-info h3 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        .food-info span {
+        /* ── CATEGORY TAGS ── */
+        .food-tag {
             display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--text-color);
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 0.8rem;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .tag-trad  { background: #ffeaea; color: #c62828; }
+        .tag-man   { background: #e8f5e9; color: #2e7d32; }
+        .tag-canh  { background: #e3f2fd; color: #1565c0; }
+        .tag-dac   { background: #fff8e1; color: #f57f17; }
+        .tag-trang { background: #f3e5f5; color: #6a1b9a; }
+
+        /* ── FEATURED DISH (full-width hero card) ── */
+        .featured-dish {
+            background: #fff;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 8px 36px rgba(0,0,0,0.11);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: 50px;
+            border: 1px solid #f0e0e0;
+        }
+        @media (max-width: 700px) { .featured-dish { grid-template-columns: 1fr; } }
+
+        .featured-dish img {
+            width: 100%;
+            height: 100%;
+            min-height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+        .featured-info {
+            padding: 36px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .featured-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #c62828, #ef5350);
+            color: #fff;
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            width: fit-content;
+        }
+        .featured-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem;
+            color: #222;
+            margin-bottom: 14px;
+            line-height: 1.3;
+        }
+        .featured-info p {
+            color: #666;
+            line-height: 1.85;
+            font-size: 0.97rem;
+        }
+        .meaning-box {
+            margin-top: 18px;
+            background: #fff8e1;
+            border-left: 4px solid #f9a825;
+            border-radius: 0 10px 10px 0;
+            padding: 12px 16px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .meaning-box strong { color: #c62828; }
+
+        /* ── DISH CARDS GRID ── */
+        .dish-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-bottom: 50px;
+        }
+        @media (max-width: 860px) { .dish-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 520px) { .dish-grid { grid-template-columns: 1fr; } }
+
+        .dish-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #f5f0f0;
+        }
+        .dish-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.14);
+        }
+        .dish-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+        .dish-card-body { padding: 18px 20px; }
+        .dish-card-body h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            color: #222;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .dish-card-body p { color: #777; font-size: 0.87rem; line-height: 1.65; }
+
+        /* ── MAM CO SECTION ── */
+        .mam-co-section {
+            background: linear-gradient(135deg, #c62828, #8b0000);
+            border-radius: 22px;
+            padding: 44px;
+            color: #fff;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        .mam-co-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem;
+            color: #fbc02d;
             margin-bottom: 10px;
         }
-
-        @media screen and (max-width: 768px) {
-            .food-grid {
-                grid-template-columns: 1fr;
-            }
+        .mam-co-section > p {
+            color: rgba(255,255,255,0.85);
+            max-width: 640px;
+            margin: 0 auto 32px;
+            font-size: 0.97rem;
+            line-height: 1.7;
         }
+        .mam-items {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .mam-item {
+            background: rgba(255,255,255,0.14);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 14px;
+            padding: 16px 20px;
+            width: 170px;
+            text-align: center;
+        }
+        .mam-item .mam-icon { font-size: 2rem; margin-bottom: 8px; }
+        .mam-item strong { display: block; font-size: 0.92rem; margin-bottom: 4px; }
+        .mam-item span { font-size: 0.78rem; opacity: 0.8; }
+
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">🌸 Tết Sóc Trăng</a>
@@ -75,62 +186,141 @@
         </div>
     </header>
 
-    <!-- Hero Banner -->
-    <section class="hero" style="background-image: url('assets/images/soc_trang_food_1772281290894.png'); height: 40vh; min-height: 250px;">
+    <!-- Hero -->
+    <section class="hero" style="background-image: url('assets/images/soc_trang_food_1772281290894.png'); height: 46vh; min-height: 290px;">
         <div class="hero-content">
-            <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Tinh Hoa Ẩm Thực</h1>
-            <p style="font-size: 1.2rem;">Những món ngon không thể thiếu ngày Tết miệt vườn</p>
+            <h1>Tinh Hoa Ẩm Thực</h1>
+            <p>Những món ngon không thể thiếu trên mâm cỗ Tết miệt vườn</p>
         </div>
     </section>
 
     <div class="container">
         <h2 class="section-title">Hương Vị Tết Quê</h2>
-        <p style="text-align: center; max-width: 600px; margin: 0 auto;">
-            Mâm cỗ Tết ở Sóc Trăng là bức tranh ẩm thực đa sắc màu, phản ánh sản vật trù phú của miệt vườn sông nước, cùng với sự kết tinh của nhiều nền văn hóa.
+        <p style="text-align:center;color:#666;max-width:640px;margin:0 auto 44px;">
+            Mâm cỗ Tết ở Sóc Trăng là bức tranh ẩm thực đa sắc màu — phản ánh sản vật trù phú miệt vườn sông nước
+            và sự kết tinh hài hòa của ba nền văn hóa Kinh, Hoa, Khmer.
         </p>
 
-        <div class="food-grid">
-            <div class="food-item">
-                <img src="assets/images/making_banh_tet_1772281275027.png" alt="Bánh Tét" class="food-img">
-                <div class="food-info">
-                    <span>Món Truyền Thống</span>
-                    <h3>Bánh Tét</h3>
-                    <p>Khác với bánh chưng miền Bắc, bánh Tét miền Nam gói theo đòn dài. Người Sóc Trăng thích nhân chuối, nhân mỡ, hoặc Bánh Tét Trà Cuôn trứ danh.</p>
-                </div>
-            </div>
-
-            <div class="food-item">
-                <img src="assets/images/soc_trang_food_1772281290894.png" alt="Thịt Kho Hột Vịt" class="food-img">
-                <div class="food-info">
-                    <span>Món Mặn</span>
-                    <h3>Thịt Kho Tàu (Thịt Kho Hột Vịt)</h3>
-                    <p>Thịt ba rọi kho chung với hột vịt luộc bóc vỏ, nước dừa xiêm tạo nên màu nâu cánh gián ánh vàng. Ý nghĩa của hột vịt tròn vuông là mong muốn "vuông tròn", sung túc.</p>
-                </div>
-            </div>
-
-            <div class="food-item">
-                <img src="assets/images/soc_trang_food_1772281290894.png" style="clip-path: circle(40%);" alt="Canh Khổ Qua" class="food-img">
-                <div class="food-info">
-                    <span>Canh</span>
-                    <h3>Canh Khổ Qua Dồn Thịt</h3>
-                    <p>Món ăn không thể thiếu với ý nghĩa: Cái "Khổ" sẽ "Qua" đi, mong năm mới tới mọi việc được suôn sẻ, ngọt ngào.</p>
-                </div>
-            </div>
-
-            <div class="food-item">
-                <img src="assets/images/soc_trang_food_1772281290894.png" alt="Bánh Pía" class="food-img">
-                <div class="food-info">
-                    <span>Đặc Sản Sóc Trăng</span>
-                    <h3>Bánh Pía & Lạp Xưởng</h3>
-                    <p>Dù không chỉ Tết mới có, nhưng Bánh Pía Vũng Thơm, Lạp Xưởng Mai Quế Lộ luôn được mua nhiều nhất để đem biếu tặng và dọn lên bàn khách ngày mùng 1.</p>
+        <!-- FEATURED: Bánh Tét -->
+        <div class="featured-dish">
+            <img src="assets/images/making_banh_tet_1772281275027.png" alt="Bánh Tét Sóc Trăng">
+            <div class="featured-info">
+                <div class="featured-badge">⭐ Món Đặc Trưng Nhất</div>
+                <h2>Bánh Tét Trà Cuôn</h2>
+                <p>
+                    Khác với bánh chưng vuông của miền Bắc, <strong>bánh tét miền Nam</strong> được gói theo đòn tròn dài bằng lá chuối.
+                    Người Sóc Trăng đặc biệt ưa chuộng <em>Bánh Tét Trà Cuôn</em> — thứ bánh đặc sản nức tiếng với
+                    nhân đậu xanh béo bùi, thịt mỡ mềm tan, hay nhân chuối thơm ngọt.
+                </p>
+                <p style="margin-top:10px;">
+                    Gói bánh tét không chỉ là nấu ăn — đó là nghi thức thiêng liêng của sự sum vầy, khi cả gia đình
+                    quây quần thức canh nồi bánh thâu đêm dưới ánh lửa bập bùng.
+                </p>
+                <div class="meaning-box">
+                    <strong>🌟 Ý nghĩa:</strong> Đòn bánh tròn dài tượng trưng cho sự sung túc, no đủ và cuộc sống trải dài bình an.
                 </div>
             </div>
         </div>
+
+        <!-- Dish Cards Grid -->
+        <div class="dish-grid">
+
+            <div class="dish-card">
+                <img src="assets/images/soc_trang_food_1772281290894.png" alt="Thịt Kho Tàu">
+                <div class="dish-card-body">
+                    <span class="food-tag tag-man">Món Mặn</span>
+                    <h3>Thịt Kho Tàu (Hột Vịt)</h3>
+                    <p>Thịt ba rọi kho cùng hột vịt trong nước dừa xiêm, tạo màu nâu cánh gián ánh vàng quyến rũ. Hột vịt tròn tượng trưng cho mong ước "vuông tròn", gia đình đầm ấm.</p>
+                </div>
+            </div>
+
+            <div class="dish-card">
+                <img src="assets/images/soc_trang_food_1772281290894.png" alt="Canh Khổ Qua">
+                <div class="dish-card-body">
+                    <span class="food-tag tag-canh">Món Canh</span>
+                    <h3>Canh Khổ Qua Dồn Thịt</h3>
+                    <p>Khổ qua nhồi thịt băm thơm ngon, nấu trong nước dùng trong veo. Tên gọi mang ý nghĩa "Khổ sẽ Qua" — năm mới bao khó khăn sẽ tiêu tan, ngọt ngào sẽ đến.</p>
+                </div>
+            </div>
+
+            <div class="dish-card">
+                <img src="assets/images/soc_trang_food_1772281290894.png" alt="Bánh Pía">
+                <div class="dish-card-body">
+                    <span class="food-tag tag-dac">Đặc Sản</span>
+                    <h3>Bánh Pía Vũng Thơm</h3>
+                    <p>Đặc sản người Hoa Sóc Trăng — vỏ bánh nhiều lớp mỏng giòn tan, nhân đậu xanh trộn mỡ heo ngọt bùi hoặc sầu riêng thơm nức. Quà biếu số một ngày Tết.</p>
+                </div>
+            </div>
+
+            <div class="dish-card">
+                <img src="assets/images/soc_trang_food_1772281290894.png" alt="Lạp Xưởng">
+                <div class="dish-card-body">
+                    <span class="food-tag tag-dac">Đặc Sản</span>
+                    <h3>Lạp Xưởng Mai Quế Lộ</h3>
+                    <p>Lạp xưởng thơm phức hương ngũ vị hương theo công thức bí truyền của người Hoa. Chiên giòn hay nướng than — đều khiến mâm cỗ thêm phần phong phú, hấp dẫn.</p>
+                </div>
+            </div>
+
+            <div class="dish-card">
+                <img src="assets/images/soc_trang_food_1772281290894.png" alt="Dưa Hấu">
+                <div class="dish-card-body">
+                    <span class="food-tag tag-trad">Truyền Thống</span>
+                    <h3>Dưa Hấu Đỏ Ruột</h3>
+                    <p>Quả dưa hấu đỏ ruột là biểu tượng Tết miền Nam — thịt đỏ tươi tượng trưng phúc lộc, may mắn. Không mâm quả Tết nào thiếu quả dưa hấu tròn căng mọng.</p>
+                </div>
+            </div>
+
+            <div class="dish-card">
+                <img src="assets/images/soc_trang_food_1772281290894.png" alt="Mứt Tết">
+                <div class="dish-card-body">
+                    <span class="food-tag tag-trang">Tráng Miệng</span>
+                    <h3>Mứt Tết & Hạt Dưa</h3>
+                    <p>Hộp mứt đủ màu sắc — gừng cay, dừa trắng, hạt sen, ô mai chua ngọt — và hạt dưa đỏ để nhâm nhi trà xuân trong lúc trò chuyện cùng khách ngày đầu năm.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Mâm Cỗ Section -->
+        <div class="mam-co-section">
+            <h2>🍽️ Mâm Cỗ Tất Niên Sóc Trăng</h2>
+            <p>
+                Chiều 30 Tết, mâm cỗ cúng tất niên được bày biện trang trọng để mời ông bà tổ tiên về sum họp.
+                Mỗi món ăn đều mang một thông điệp tốt lành cho năm mới.
+            </p>
+            <div class="mam-items">
+                <div class="mam-item">
+                    <div class="mam-icon">🫓</div>
+                    <strong>Bánh Tét</strong>
+                    <span>No đủ, sung túc</span>
+                </div>
+                <div class="mam-item">
+                    <div class="mam-icon">🥚</div>
+                    <strong>Thịt Kho Hột Vịt</strong>
+                    <span>Vuông tròn, đầm ấm</span>
+                </div>
+                <div class="mam-item">
+                    <div class="mam-icon">🥗</div>
+                    <strong>Khổ Qua Dồn Thịt</strong>
+                    <span>Vượt khó, ngọt ngào</span>
+                </div>
+                <div class="mam-item">
+                    <div class="mam-icon">🍉</div>
+                    <strong>Dưa Hấu Đỏ</strong>
+                    <span>Phúc lộc, may mắn</span>
+                </div>
+                <div class="mam-item">
+                    <div class="mam-icon">🌺</div>
+                    <strong>Mâm Ngũ Quả</strong>
+                    <span>Cầu đủ - sung - vừa - xài</span>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Tết Sóc Trăng. Thực hiện bởi Bảo Trân</p>
+        <p>© 2026 Tết Sóc Trăng. Thực hiện bởi Bảo Trân</p>
         <div class="social-links">
             <a href="#">🌐</a>
             <a href="#">📷</a>
@@ -138,7 +328,6 @@
         </div>
     </footer>
 
-    <!-- Audio Player -->
     <audio id="bg-music" loop>
         <source src="assets/audio/Vạn Sự Như Ý.flac" type="audio/flac">
     </audio>
