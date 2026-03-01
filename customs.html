@@ -4,90 +4,160 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phong Tục & Nghi Lễ - Tết Sóc Trăng</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 40px auto;
+
+        /* ── PHASE CARDS (thay timeline) ── */
+        .phases {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+        @media (max-width: 640px) { .phases { grid-template-columns: 1fr; } }
+
+        .phase-card {
+            background: #fff;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .phase-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 40px rgba(0,0,0,0.14);
         }
 
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 4px;
-            background-color: var(--primary-color);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -2px;
+        .phase-header {
+            padding: 20px 24px 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .phase-icon {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+        .phase-card:nth-child(1) .phase-header { background: linear-gradient(135deg, #c62828, #ef5350); color: #fff; }
+        .phase-card:nth-child(2) .phase-header { background: linear-gradient(135deg, #f57f17, #fbc02d); color: #fff; }
+        .phase-card:nth-child(3) .phase-header { background: linear-gradient(135deg, #2e7d32, #43a047); color: #fff; }
+        .phase-card:nth-child(4) .phase-header { background: linear-gradient(135deg, #6a1b9a, #9c27b0); color: #fff; }
+
+        .phase-header-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: 3px;
+        }
+        .phase-header-text span {
+            font-size: 0.82rem;
+            opacity: 0.88;
         }
 
-        .timeline-item {
-            padding: 20px 40px;
-            position: relative;
-            background-color: inherit;
-            width: 50%;
+        .phase-body {
+            padding: 20px 24px;
         }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            right: -10px;
-            background-color: var(--white);
-            border: 4px solid var(--accent-color);
-            top: 25px;
+        .ritual-item {
+            display: flex;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f3f3f3;
+            align-items: flex-start;
+        }
+        .ritual-item:last-child { border-bottom: none; }
+        .ritual-dot {
+            width: 8px; height: 8px;
             border-radius: 50%;
-            z-index: 1;
+            background: #c62828;
+            margin-top: 7px;
+            flex-shrink: 0;
+        }
+        .ritual-item strong {
+            color: #333;
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.95rem;
+        }
+        .ritual-item p { color: #666; font-size: 0.88rem; line-height: 1.6; margin: 0; }
+
+        /* ── RITUAL SPOTLIGHT  ── */
+        .spotlight {
+            background: linear-gradient(135deg, #c62828 0%, #8b0000 100%);
+            border-radius: 20px;
+            padding: 40px;
+            color: #fff;
+            margin-bottom: 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 36px;
+            align-items: center;
+        }
+        @media (max-width: 680px) { .spotlight { grid-template-columns: 1fr; } }
+
+        .spotlight-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #fbc02d;
+            margin-bottom: 14px;
+        }
+        .spotlight-text p {
+            font-size: 0.97rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.9);
+        }
+        .spotlight-img img {
+            width: 100%;
+            border-radius: 14px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+            object-fit: cover;
+            display: block;
         }
 
-        .left {
-            left: 0;
+        /* ── TABOOS (kiêng kỵ) ── */
+        .taboos-section {
+            background: #fff8e1;
+            border-radius: 20px;
+            padding: 36px;
+            margin-bottom: 60px;
+            border-left: 6px solid #f9a825;
         }
+        .taboos-section h2 {
+            font-family: 'Playfair Display', serif;
+            color: #c62828;
+            font-size: 1.6rem;
+            margin-bottom: 6px;
+        }
+        .taboos-section > p {
+            color: #888;
+            margin-bottom: 24px;
+        }
+        .taboo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+        @media (max-width: 600px) { .taboo-grid { grid-template-columns: 1fr; } }
 
-        .right {
-            left: 50%;
+        .taboo-item {
+            background: #fff;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
+        .taboo-item .taboo-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .taboo-item p { font-size: 0.88rem; color: #555; margin: 0; line-height: 1.6; }
+        .taboo-item strong { color: #c62828; display: block; margin-bottom: 3px; }
 
-        .right::after {
-            left: -10px;
-        }
-
-        .content {
-            padding: 20px;
-            background-color: var(--white);
-            position: relative;
-            border-radius: 6px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .content h3 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        /* Responsive timeline */
-        @media screen and (max-width: 600px) {
-            .timeline::after { left: 31px; }
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            .timeline-item::after {
-                left: 21px;
-            }
-            .right { left: 0%; }
-        }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">🌸 Tết Sóc Trăng</a>
@@ -105,67 +175,216 @@
         </div>
     </header>
 
-    <!-- Hero Banner -->
-    <section class="hero" style="background-image: url('assets/images/family_gathering_1772281347852.png'); height: 40vh; min-height: 250px;">
+    <!-- Hero -->
+    <section class="hero" style="background-image: url('assets/images/family_gathering_1772281347852.png'); height: 46vh; min-height: 290px;">
         <div class="hero-content">
-            <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Phong Tục Ngày Tết</h1>
-            <p style="font-size: 1.2rem;">Giữ gìn nét đẹp truyền thống của ông bà</p>
+            <h1>Phong Tục Ngày Tết</h1>
+            <p>Giữ gìn nét đẹp truyền thống của ông bà truyền lại</p>
         </div>
     </section>
 
     <div class="container">
-        <h2 class="section-title" style="margin-top: 20px;">Nghi Lễ Ngày Xuân</h2>
-        <p style="text-align: center; max-width: 600px; margin: 0 auto; margin-bottom: 40px;">
-            Người Sóc Trăng đón Tết Nguyên Đán với những phong tục truyền thống được gìn giữ qua nhiều thế hệ, pha trộn sự đặc sắc từ cộng đồng Kinh, Hoa và Khmer.
+        <h2 class="section-title">Nghi Lễ Theo Từng Giai Đoạn</h2>
+        <p style="text-align:center;color:#666;max-width:640px;margin:0 auto 40px;">
+            Người Sóc Trăng đón Tết Nguyên Đán với những phong tục truyền thống được gìn giữ qua nhiều thế hệ,
+            pha trộn sự đặc sắc từ cộng đồng Kinh, Hoa và Khmer.
         </p>
 
-        <div class="timeline">
-            <div class="timeline-item left">
-                <div class="content">
-                    <h3>Trước Tết (23 - 30 tháng Chạp)</h3>
-                    <ul>
-                        <li><b>Dọn dẹp nhà cửa:</b> Quét đi những xui xẻo năm cũ, trang hoàng lại nhà cửa với hoa mai vàng, đối liên đỏ.</li>
-                        <li><b>Đưa Ông Táo:</b> Ngày 23 tháng Chạp, gia đình sắm sửa cá chép tiễn ông Táo về trời.</li>
-                        <li><b>Gói Bánh Tét:</b> Cả nhà quây quần vo nếp, đãi đậu, thức thâu đêm để canh nồi bánh sôi lục bục giữa tiết trời se lạnh.</li>
-                    </ul>
+        <!-- Phase Cards -->
+        <div class="phases">
+
+            <!-- Trước Tết -->
+            <div class="phase-card">
+                <div class="phase-header">
+                    <div class="phase-icon">🌸</div>
+                    <div class="phase-header-text">
+                        <h3>Trước Tết</h3>
+                        <span>23 – 30 tháng Chạp</span>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="timeline-item right">
-                <div class="content">
-                    <h3>Giao Thừa</h3>
-                    <ul>
-                        <li><b>Cúng Giao Thừa:</b> Mâm cỗ nhỏ đặt trước sân nhà giữa giờ khắc thiêng liêng chuyển giao năm mới và năm cũ.</li>
-                        <li><b>Lễ Phật, Viếng Chùa:</b> Ngay sau Giao thừa, người dân có thói quen đi chùa (Kinh, Hoa hay Khmer đều đi cúng ở các chùa quanh vùng) để hái lộc và cầu an.</li>
-                    </ul>
+                <div class="phase-body">
+                    <div class="ritual-item">
+                        <div class="ritual-dot"></div>
+                        <div>
+                            <strong>Dọn dẹp nhà cửa</strong>
+                            <p>Quét đi những xui xẻo năm cũ, trang hoàng lại nhà với hoa mai vàng, câu đối đỏ rực rỡ.</p>
+                        </div>
+                    </div>
+                    <div class="ritual-item">
+                        <div class="ritual-dot"></div>
+                        <div>
+                            <strong>Đưa Ông Táo về trời</strong>
+                            <p>Ngày 23 tháng Chạp, gia đình sắm cá chép vàng tiễn Táo Quân về thiên đình báo cáo một năm qua.</p>
+                        </div>
+                    </div>
+                    <div class="ritual-item">
+                        <div class="ritual-dot"></div>
+                        <div>
+                            <strong>Gói bánh Tét</strong>
+                            <p>Cả nhà quây quần thức thâu đêm canh nồi bánh sôi lục bục — khoảnh khắc sum vầy ấm áp nhất năm.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="timeline-item left">
-                <div class="content">
-                    <h3>Trong Tết (Mùng 1 - Mùng 3)</h3>
-                    <ul>
-                        <li><b>Chúc Tết và Lì Xì:</b> Mùng 1 là ngày của gia đình nội tộc, trẻ nhỏ chúc thọ ông bà, người lớn mừng tuổi trẻ con.</li>
-                        <li><b>Đến thăm thân hữu:</b> Mùng 2, mùng 3 đi chúc Tết đồng nghiệp, bạn bè và hàng xóm, ăn bánh Pía, uống trà nóng.</li>
-                    </ul>
+            <!-- Giao Thừa -->
+            <div class="phase-card">
+                <div class="phase-header">
+                    <div class="phase-icon">🌙</div>
+                    <div class="phase-header-text">
+                        <h3>Đêm Giao Thừa</h3>
+                        <span>Khoảnh khắc thiêng liêng nhất</span>
+                    </div>
+                </div>
+                <div class="phase-body">
+                    <div class="ritual-item">
+                        <div class="ritual-dot" style="background:#f9a825;"></div>
+                        <div>
+                            <strong>Cúng Giao Thừa</strong>
+                            <p>Mâm cỗ đặt trước sân nhà đúng giờ Tý — giây phút thiêng liêng chuyển giao năm cũ và năm mới.</p>
+                        </div>
+                    </div>
+                    <div class="ritual-item">
+                        <div class="ritual-dot" style="background:#f9a825;"></div>
+                        <div>
+                            <strong>Lễ Phật & Viếng Chùa</strong>
+                            <p>Ngay sau Giao Thừa, người Kinh, Hoa, Khmer đều đổ ra đường đi chùa hái lộc, cầu bình an năm mới.</p>
+                        </div>
+                    </div>
+                    <div class="ritual-item">
+                        <div class="ritual-dot" style="background:#f9a825;"></div>
+                        <div>
+                            <strong>Xông đất đầu năm</strong>
+                            <p>Người đầu tiên bước vào nhà trong năm mới được chọn kỹ để mang lại vận may cho cả gia đình.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="timeline-item right">
-                <div class="content">
-                    <h3>Sau Tết (Mùng 4 trở đi)</h3>
-                    <ul>
-                        <li><b>Hóa Vàng:</b> Làm lễ cúng tiễn ông bà, đốt vàng mã.</li>
-                        <li><b>Trở lại làm việc:</b> Khởi đầu một năm mới, nhiều nơi như Sóc Trăng sẽ bắt đầu vào vụ thu hoạch hoặc đi làm biển.</li>
-                    </ul>
+            <!-- Trong Tết -->
+            <div class="phase-card">
+                <div class="phase-header">
+                    <div class="phase-icon">🧧</div>
+                    <div class="phase-header-text">
+                        <h3>Trong Tết</h3>
+                        <span>Mùng 1 – Mùng 3</span>
+                    </div>
+                </div>
+                <div class="phase-body">
+                    <div class="ritual-item">
+                        <div class="ritual-dot" style="background:#2e7d32;"></div>
+                        <div>
+                            <strong>Chúc Tết & Lì Xì</strong>
+                            <p>Mùng 1 là ngày gia đình nội — trẻ nhỏ chúc thọ ông bà, người lớn mừng tuổi các cháu bằng bao lì xì đỏ.</p>
+                        </div>
+                    </div>
+                    <div class="ritual-item">
+                        <div class="ritual-dot" style="background:#2e7d32;"></div>
+                        <div>
+                            <strong>Thăm thân hữu</strong>
+                            <p>Mùng 2, 3 đi chúc Tết họ hàng, bạn bè, thưởng thức bánh Pía, uống trà thơm và trò chuyện rôm rả.</p>
+                        </div>
+                    </div>
+                    <div class="ritual-item">
+                        <div class="ritual-dot" style="background:#2e7d32;"></div>
+                        <div>
+                            <strong>Múa Lân</strong>
+                            <p>Đội Lân rộn ràng trống chiêng đến từng nhà, xua đuổi tà khí và mang lộc may mắn cho gia chủ.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sau Tết -->
+            <div class="phase-card">
+                <div class="phase-header">
+                    <div class="phase-icon">🌾</div>
+                    <div class="phase-header-text">
+                        <h3>Sau Tết</h3>
+                        <span>Mùng 4 trở đi</span>
+                    </div>
+                </div>
+                <div class="phase-body">
+                    <div class="ritual-item">
+                        <div class="ritual-dot" style="background:#6a1b9a;"></div>
+                        <div>
+                            <strong>Lễ Hóa Vàng</strong>
+                            <p>Làm lễ cúng tiễn ông bà trở về cõi tiên, đốt vàng mã báo hiệu Tết đã qua.</p>
+                        </div>
+                    </div>
+                    <div class="ritual-item">
+                        <div class="ritual-dot" style="background:#6a1b9a;"></div>
+                        <div>
+                            <strong>Khai xuân làm việc</strong>
+                            <p>Nông dân xuống đồng, ngư dân ra khơi — mở đầu một năm mới với hy vọng mùa màng bội thu.</p>
+                        </div>
+                    </div>
+                    <div class="ritual-item">
+                        <div class="ritual-dot" style="background:#6a1b9a;"></div>
+                        <div>
+                            <strong>Hội đua ghe Ngo</strong>
+                            <p>Lễ hội đua ghe Ngo Khmer tưng bừng trên sông, thu hút hàng ngàn người xem cổ vũ.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Spotlight: Gói Bánh Tét -->
+        <div class="spotlight">
+            <div class="spotlight-text">
+                <h2>🏆 Gói Bánh Tét — Phong Tục Linh Hồn</h2>
+                <p>
+                    Trong tất cả các phong tục Tết, gói bánh tét là nghi thức được yêu thích và mong đợi nhất.
+                    Cả đại gia đình quây quần từ chiều hôm trước, vo nếp, đãi đậu xanh, thái thịt ba chỉ ướp gia vị.
+                </p>
+                <p style="margin-top: 12px;">
+                    Tiếng lửa bếp lép bép, mùi lá chuối xanh thơm, hơi nước bốc nghi ngút — đó là mùi của Tết,
+                    mùi của tuổi thơ không bao giờ phai trong ký ức người con Sóc Trăng.
+                </p>
+            </div>
+            <div class="spotlight-img">
+                <img src="assets/images/making_banh_tet_1772281275027.png" alt="Gói bánh tét">
+            </div>
+        </div>
+
+        <!-- Taboos -->
+        <div class="taboos-section">
+            <h2>⚠️ Kiêng Kỵ Ngày Tết</h2>
+            <p>Những điều người Sóc Trăng tránh làm trong dịp đầu năm để không phạm vào điều xui xẻo</p>
+            <div class="taboo-grid">
+                <div class="taboo-item">
+                    <div class="taboo-icon">🧹</div>
+                    <p><strong>Không quét nhà</strong>Sáng Mùng 1 tuyệt đối không quét — sợ quét tiền tài, lộc phúc ra ngoài.</p>
+                </div>
+                <div class="taboo-item">
+                    <div class="taboo-icon">🗣️</div>
+                    <p><strong>Không nói xấu</strong>Kiêng nói những lời tiêu cực, chửi bới hay lời không hay đầu năm.</p>
+                </div>
+                <div class="taboo-item">
+                    <div class="taboo-icon">😢</div>
+                    <p><strong>Không khóc lóc</strong>Nước mắt đầu năm bị xem là điềm gở, sẽ buồn suốt cả năm dài.</p>
+                </div>
+                <div class="taboo-item">
+                    <div class="taboo-icon">✂️</div>
+                    <p><strong>Không cắt kéo</strong>Không dùng dao kéo Mùng 1 — tránh "cắt đứt" may mắn vừa đến.</p>
+                </div>
+                <div class="taboo-item">
+                    <div class="taboo-icon">🍳</div>
+                    <p><strong>Kiêng cho lửa</strong>Không cho lửa ra khỏi nhà ngày đầu năm — lửa là tài lộc của gia đình.</p>
+                </div>
+                <div class="taboo-item">
+                    <div class="taboo-icon">💊</div>
+                    <p><strong>Không uống thuốc</strong>Người khỏe mạnh kiêng uống thuốc Mùng 1 để tránh ốm đau cả năm.</p>
                 </div>
             </div>
         </div>
+
     </div>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Tết Sóc Trăng. Thực hiện bởi Bảo Trân</p>
+        <p>© 2026 Tết Sóc Trăng. Thực hiện bởi Bảo Trân</p>
         <div class="social-links">
             <a href="#">🌐</a>
             <a href="#">📷</a>
@@ -173,7 +392,6 @@
         </div>
     </footer>
 
-    <!-- Audio Player -->
     <audio id="bg-music" loop>
         <source src="assets/audio/Vạn Sự Như Ý.flac" type="audio/flac">
     </audio>
